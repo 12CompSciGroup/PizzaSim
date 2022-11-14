@@ -32,6 +32,7 @@ public class Pizza extends Actor
         new GreenfootImage("dough4.png"),
         new GreenfootImage("dough5.png"),
     };
+    private static GreenfootImage crust=new GreenfootImage("cooked.png");
     private GreenfootImage theSauce;
     private String sauce;
     private int imageIndex;
@@ -159,12 +160,18 @@ public class Pizza extends Actor
     }
     
     /**
-     * 
+     * return if the pizza is burned
      */
     public boolean getBurn(){
         return burn;
     }
     
+    /**
+     * return if the pizza is cooked
+     */
+    public boolean getCooked(){
+        return cooked;
+    }
     public void burnPizza(){
         //add a dark layer on the pizza
         //drawImage
@@ -173,6 +180,8 @@ public class Pizza extends Actor
     
     public void cookPizza(){
         //add a golden crust layer on pizza
+        crust.setTransparency(150);
+        getImage().drawImage(crust,0,0);
         cooked=true;
     }
 }
