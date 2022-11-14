@@ -3,10 +3,10 @@ import java.util.ArrayList;
 /**
  * Write a description of class Pizza here.
  * 
- * @Yuxin Li (Yuxin Li) 
+ * @Yuxin Li (your name) 
  * @version (a version number or a date)
  * 
- */ 
+ */
 public class Pizza extends Actor
 {
     /**
@@ -32,6 +32,8 @@ public class Pizza extends Actor
         new GreenfootImage("dough4.png"),
         new GreenfootImage("dough5.png"),
     };
+    private GreenfootImage theSauce;
+    private String sauce;
     private int imageIndex;
     private int changeTime;
     private boolean hasChef;
@@ -39,12 +41,13 @@ public class Pizza extends Actor
      * initialize a pizza that correspond to a customer's order after 
      * a customer comes in the store and orders
      */
-    public Pizza(String[] strings, Customer customer){
+    public Pizza(String sauce, String[] strings){
         firstStage_finished=false;
         doughFinished=false;
         imageIndex=0;
         changeTime=0;
         //this.customer=customer;
+        this.sauce=sauce;
         hasChef=false;
         toppings=strings;
         burn=false;
@@ -57,7 +60,7 @@ public class Pizza extends Actor
         }
         
         if(doughFinished&&firstStage_finished==false){
-            addToppings(toppings);
+            addToppings(sauce, toppings);
         }
         isPickedUp();
     }
@@ -98,9 +101,11 @@ public class Pizza extends Actor
         }
         changeTime--;
     }
-    public void addToppings(String[] strings){
+    public void addToppings(String sauce, String[] strings){
         //calculate total cooktime
         //placeholders
+        theSauce=new GreenfootImage("sauce"+sauce+".png");
+        getImage().drawImage(theSauce,0,0);
         for(int i=0; i<toppings.length; i++){
             GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
             getImage().drawImage(topping, 0, 0);
@@ -109,10 +114,10 @@ public class Pizza extends Actor
     /**
      * calculate the cook time required for the pizza
      */
-    public int getCookTime(String[] strings){
+    public int getCookTime(){
         //return cooktime
         //add the time for all toppings
-        return 300;
+        return 100;
     }
     /**
      * if the pizza is cooked and a chef comes, return has chef
@@ -134,7 +139,7 @@ public class Pizza extends Actor
         //set transparency to 0 
         //getImage().setTransparency(0);
         //start timer
-        //getWorld.addObject(new Timer, ovenX, ovenY);
+        //getWorld.addObject(new Timer(cookTime), ovenX, ovenY);
         //set the oven filled 
         //find the position of the oven(oven1 oven2 oven3)
         inOven=true;
@@ -154,17 +159,10 @@ public class Pizza extends Actor
     }
     
     /**
-     * check if the pizza is burned
+     * 
      */
-    public boolean isBurned(){
+    public boolean getBurn(){
         return burn;
-    }
-    
-    /**
-     * check if the pizza is cooked 
-     */
-    public boolean isCooked(){
-        return cooked;
     }
     
     public void burnPizza(){
