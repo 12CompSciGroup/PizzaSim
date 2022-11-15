@@ -83,6 +83,18 @@ public class MyWorld extends World
         }
         
     }
+    public void spawnRobber()
+    {
+        if(Utils.resturantMoneyOne>5)
+        {
+            addObject(new Robber(2), 500,100);
+        }
+        if(Utils.resturantMoneyTwo>5)
+        {
+            addObject(new Robber(1),500,100);
+        }
+        
+    }
     
     public void removeAllActors() {
         ArrayList<Actor> actors = (ArrayList) getObjects(null);
