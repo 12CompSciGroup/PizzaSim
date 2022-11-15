@@ -38,6 +38,9 @@ public class Pizza extends Actor
     private int imageIndex;
     private int changeTime;
     private boolean hasChef;
+    
+    private double exactX;
+    private double exactY;
     /**
      * initialize a pizza that correspond to a customer's order after 
      * a customer comes in the store and orders
@@ -183,5 +186,18 @@ public class Pizza extends Actor
         crust.setTransparency(150);
         getImage().drawImage(crust,0,0);
         cooked=true;
+    }
+    
+    /**
+     * Set the location using exact coordinates.
+     * 
+     * @param x the new x location
+     * @param y the new y location
+     */
+    public void setLocation(double x, double y) 
+    {
+        exactX = x;
+        exactY = y;
+        super.setLocation((int) (x + 0.5), (int) (y + 0.5));
     }
 }

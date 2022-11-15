@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Order
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Order\ here.\r\n\ \r\n\ @Yuxin\ Li\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n\ \r\n\ chatBox\ image\ by\ Sallie\ from\:\ \r\n\ https\://www.vhv.rs/viewpic/oobJ_pixel-chat-bubble-png-transparent-png/\r\n
+comment1.params=strings
+comment1.target=Order(java.lang.String[])
+comment2.params=
+comment2.target=void\ drawOrder()
+comment2.text=\r\n\ draw\ the\ order\ picture\ above\ the\ head\ of\ each\ customer\r\n
+comment3.params=w
+comment3.target=void\ addedToWorld(greenfoot.World)
+numComments=4
