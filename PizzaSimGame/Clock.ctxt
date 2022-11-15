@@ -1,14 +1,14 @@
 #BlueJ class context
 comment0.target=Clock
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ clock\ here.\r\n\ \r\n\ @author\ (Yuxin\ Li)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ clock\ here.\n\ \n\ @author\ (Yuxin\ Li)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=time\ pizza
 comment1.target=Clock(int,\ Pizza)
 comment2.params=
 comment2.target=void\ act()
-comment2.text=\r\n\ countdown\ act\r\n
+comment2.text=\n\ countdown\ act\n
 comment3.params=
 comment3.target=void\ clock_Alarm()
-comment3.text=\r\n\ When\ the\ countdown\ is\ finished,\ the\ clock\ will\ shake\ and\ alarm\ \r\n
+comment3.text=\n\ When\ the\ countdown\ is\ finished,\ the\ clock\ will\ shake\ and\ alarm\ \n
 comment4.params=
 comment4.target=void\ removeClock()
 numComments=5
