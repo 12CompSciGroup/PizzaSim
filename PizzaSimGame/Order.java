@@ -57,6 +57,6 @@ public class Order extends Actor
      * move the order with the customer
      */
     public void moveMe(){
-        setLocation(customer.getX(), customer.getY()-(customer.getImage()).getHeight()/2);
+        setLocation(customer.getX(), customer.getY()-(customer.getImage()).getHeight()/2-20);
     }
 }
