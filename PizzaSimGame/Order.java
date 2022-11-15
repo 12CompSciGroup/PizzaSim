@@ -21,14 +21,25 @@ public class Order extends Actor
     private GreenfootImage topping;
     private GreenfootImage theSauce;
     private GreenfootImage dough;
+    private Customer customer;
     private int a;
-    public Order(String sauceType, String[] toppingTypes){
+    public Order(String sauceType, String[] toppingTypes, Customer theCustomer){
         toppings=toppingTypes;
         sauce=sauceType;
         dough=new GreenfootImage("dough.png");
         chatBox.drawImage(dough, 12, 2);
+        customer=theCustomer;
         a=0;
         
+    }
+    /**
+     * move the order 
+     */
+    public void act(){
+        moveMe();
+    }
+    public void addedToWorld(World w){
+        drawOrder();
     }
     /**
      * draw the order picture above the head of each customer
@@ -41,7 +52,11 @@ public class Order extends Actor
             chatBox.drawImage(topping, 12, 2);
         }
     }
-    public void addedToWorld(World w){
-        drawOrder();
+    
+    /**
+     * move the order with the customer
+     */
+    public void moveMe(){
+        setLocation(customer.getX(), customer.getY()-(customer.getImage()).getHeight()/2);
     }
 }

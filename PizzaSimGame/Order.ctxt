@@ -1,11 +1,17 @@
 #BlueJ class context
 comment0.target=Order
 comment0.text=\n\ Write\ a\ description\ of\ class\ Order\ here.\n\ \n\ @Yuxin\ Li\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n\ \n\ chatBox\ image\ by\ Sallie\ from\:\ \n\ https\://www.vhv.rs/viewpic/oobJ_pixel-chat-bubble-png-transparent-png/\n
-comment1.params=sauceType\ toppingTypes
-comment1.target=Order(java.lang.String,\ java.lang.String[])
+comment1.params=sauceType\ toppingTypes\ theCustomer
+comment1.target=Order(java.lang.String,\ java.lang.String[],\ Customer)
 comment2.params=
-comment2.target=void\ drawOrder()
-comment2.text=\n\ draw\ the\ order\ picture\ above\ the\ head\ of\ each\ customer\n
+comment2.target=void\ act()
+comment2.text=\n\ move\ the\ order\ \n
 comment3.params=w
 comment3.target=void\ addedToWorld(greenfoot.World)
-numComments=4
+comment4.params=
+comment4.target=void\ drawOrder()
+comment4.text=\n\ draw\ the\ order\ picture\ above\ the\ head\ of\ each\ customer\n
+comment5.params=
+comment5.target=void\ moveMe()
+comment5.text=\n\ move\ the\ order\ with\ the\ customer\n
+numComments=6
