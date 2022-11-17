@@ -148,19 +148,13 @@ dependency8.type=UsesDependency
 dependency9.from=MyWorld
 dependency9.to=Customer
 dependency9.type=UsesDependency
-editor.fx.0.height=797
-editor.fx.0.width=1293
+editor.fx.0.height=798
+editor.fx.0.width=1440
 editor.fx.0.x=0
 editor.fx.0.y=25
-<<<<<<< HEAD
-height=794
-package.numDependencies=20
-package.numTargets=28
-=======
-height=900
+height=799
 package.numDependencies=48
 package.numTargets=31
->>>>>>> main
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -393,11 +387,7 @@ target9.width=120
 target9.x=0
 target9.y=0
 version=3.0.0
-width=1440
+width=1293
 world.lastInstantiated=StartWorld
 xPosition=0
-<<<<<<< HEAD
 yPosition=25
-=======
-yPosition=0
->>>>>>> main

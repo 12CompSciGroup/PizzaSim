@@ -1,17 +1,17 @@
 #BlueJ class context
 comment0.target=BackgroundSound
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ BackgroundSound\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ BackgroundSound\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=BackgroundSound()
 comment2.params=
 comment2.target=BackgroundSound\ getInstance()
 comment3.params=volume
 comment3.target=void\ setVolume(int)
-comment3.text=\r\n\ Set\ volume\r\n\ @param\ volume\ The\ current\ volume\r\n
+comment3.text=\n\ Set\ volume\n\ @param\ volume\ The\ current\ volume\n
 comment4.params=
 comment4.target=void\ playSound()
-comment4.text=\r\n\ Play\ sound\r\n
+comment4.text=\n\ Play\ sound\n
 comment5.params=
 comment5.target=void\ pauseSound()
-comment5.text=\r\n\ Stop\ sound\r\n
+comment5.text=\n\ Stop\ sound\n
 numComments=6
