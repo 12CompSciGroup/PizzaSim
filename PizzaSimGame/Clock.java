@@ -87,10 +87,10 @@ public class Clock extends Actor
             burnAct=0;
         }
     }
-    // when the pizza is picked up by the chef
+    // when the pizza is picked up by the cashier
     // remove clock
     public void removeClock(){
-        if(this.pizza.isPickedUp()){
+        if(this.pizza.isInOven()==false){
             getWorld().removeObject(this);
         }
     }

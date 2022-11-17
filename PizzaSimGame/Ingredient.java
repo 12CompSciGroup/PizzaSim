@@ -6,10 +6,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ingredients extends Actor
+public class Ingredient extends Actor
 {
     private double exactX;
     private double exactY;
+    private GreenfootImage image;
+    
+    public Ingredient(String ingredient) {
+        image = new GreenfootImage(ingredient + ".png");
+        setImage(image);
+    }
+    
     /**
      * Act - do whatever the Ingredients wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

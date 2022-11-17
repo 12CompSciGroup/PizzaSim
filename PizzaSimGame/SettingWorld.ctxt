@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SettingWorld
+comment0.text=\n\ Write\ a\ description\ of\ class\ SettingWorld\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=SettingWorld()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ SettingWorld.\n\ \n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ started()
+comment4.params=
+comment4.target=void\ stopped()
+comment5.params=
+comment5.target=int\ getChefNum()
+comment6.params=
+comment6.target=int\ getCashierNum()
+comment7.params=
+comment7.target=int\ getMoneyNum()
+comment8.params=
+comment8.target=int\ getRobberCost()
+numComments=9

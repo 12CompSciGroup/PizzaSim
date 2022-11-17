@@ -8,17 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Oven extends Target
 {
-    private boolean isEmpty, isReserved = false;
+    private boolean isEmpty, isReserved = false, isPickUpReserved = false;
     
     public Oven()
     {
         getImage().scale(50, 50);
-        getImage().setTransparency(0);
+        getImage().setTransparency(255);
     }
     
     public boolean checkIfEmpty()
     {
-        if(isTouching(Pizza.class))
+        if(getOneObjectAtOffset(0, 0, Pizza.class) != null)
         {
             isEmpty = false;
         }
@@ -29,6 +29,25 @@ public class Oven extends Target
         return isEmpty;
     }
     
+    public boolean canPickUp()
+    {
+        if(!checkIfEmpty())
+        {
+            Pizza pizza = (Pizza) getOneObjectAtOffset(0, 0, Pizza.class);
+            if(pizza.isCooked())
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
+    public void pickUpReserve(boolean reservation)
+    {
+        isPickUpReserved = reservation;
+    }
+    
     public void reserve(boolean reservation)
     {
         isReserved = reservation;
@@ -37,5 +56,10 @@ public class Oven extends Target
     public boolean isReserved()
     {
         return isReserved;
+    }
+    
+    public boolean isPickUpReserved()
+    {
+        return isPickUpReserved;
     }
 }

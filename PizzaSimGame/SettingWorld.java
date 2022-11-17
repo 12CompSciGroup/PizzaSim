@@ -3,29 +3,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class SettingWorld here.
  * 
- * @author (your name) 
+ * @author Yixin Cai
  * @version (a version number or a date)
  */
 public class SettingWorld extends World
 {
     private GreenfootImage image;
     
-    SettingButton chefAdd;
-    SettingButton chefMinus;
-    SettingButton cashierAdd;
-    SettingButton cashierMinus;
-    SettingButton moneyAdd;
-    SettingButton moneyMinus;
-    SettingButton robberCostAdd;
-    SettingButton robberCostMinus;
-    Label chefNumLabel;
-    Label chefLabel;
-    Label cashierNumLabel;
-    Label cashierLabel;
-    Label moneyNumLabel;
-    Label moneyLabel;
-    Label robberCostLabel;
-    Label robberLabel;
+    private SettingButton chefAdd;
+    private SettingButton chefMinus;
+    private SettingButton cashierAdd;
+    private SettingButton cashierMinus;
+    private SettingButton moneyAdd;
+    private SettingButton moneyMinus;
+    private SettingButton robberCostAdd;
+    private SettingButton robberCostMinus;
+    private Label chefNumLabel;
+    private Label chefLabel;
+    private Label cashierNumLabel;
+    private Label cashierLabel;
+    private Label moneyNumLabel;
+    private Label moneyLabel;
+    private Label robberCostLabel;
+    private Label robberLabel;
+    
+    private final int DEFAULT_CHEF_NUM = 2;
+    private final int DEFAULT_CASHIER_NUM = 1;
+    private final int DEFAULT_MONEY_NUM = 30;
+    private final int DEFAULT_ROBBER_COST = 10;
     
     private int chefNum;
     private int cashierNum;
@@ -41,10 +46,10 @@ public class SettingWorld extends World
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
         
-        this.chefNum = 2;
-        this.cashierNum = 1;
-        this.moneyNum = 10;
-        this.robberCost = 5;
+        this.chefNum = DEFAULT_CHEF_NUM;
+        this.cashierNum = DEFAULT_CASHIER_NUM;
+        this.moneyNum = DEFAULT_MONEY_NUM;
+        this.robberCost = DEFAULT_ROBBER_COST;
         
         GreenfootImage plusImage = new GreenfootImage("plusIcon.png");
         GreenfootImage minusImage = new GreenfootImage("minusIcon.png");
@@ -84,7 +89,7 @@ public class SettingWorld extends World
         addObject(this.cashierLabel, getWidth() / 2 - 135, getHeight() - 400);
         
         addObject(this.moneyAdd, getWidth() / 2 + 200, getHeight() - 300);
-        addObject(this.moneyMinus, getWidth() / 2 +100, getHeight() - 300);
+        addObject(this.moneyMinus, getWidth() / 2 + 100, getHeight() - 300);
         addObject(this.moneyNumLabel, getWidth() / 2 + 150, getHeight() - 300);
         addObject(this.moneyLabel, getWidth() / 2 - 100, getHeight() - 300);
         
@@ -136,7 +141,7 @@ public class SettingWorld extends World
     }
     
     public void stopped() {
-        BackgroundSound.getInstance().stopSound();
+        BackgroundSound.getInstance().pauseSound();
     }
     
     public int getChefNum() {

@@ -3,22 +3,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Button here.
  * 
- * @author (your name) 
+ * @author Yixin Cai
  * @version (a version number or a date)
  */
 public abstract class Button extends Actor implements ISoundCentre
 {
     protected GreenfootImage image;
     protected GreenfootImage downImage;
-    protected GreenfootSound sound;
+    //protected GreenfootSound sound;
+    protected GreenfootSound[] sounds;
+    private int soundNum;
+    private static int soundIndex;
     protected boolean isImageDown;
     
     public Button(GreenfootImage image, GreenfootImage downImage) {
         this.image = image;
+        soundNum = 10;
+        soundIndex = 0;
         this.downImage = downImage;
-        this.sound = new GreenfootSound("click.wav");
         isImageDown = false;
         setImage(image);
+        sounds = new GreenfootSound[soundNum];
+        for (int i = 0; i < soundNum; i++) {
+            sounds[i] = new GreenfootSound("click.wav");
+        }
     }
     
     /**
@@ -32,16 +40,25 @@ public abstract class Button extends Actor implements ISoundCentre
         //    playSound();
         //}
         //onHover();
+        String key = Greenfoot.getKey();
         
         if (Greenfoot.mouseClicked(this)) {
             setImage(downImage);
             isImageDown = true;
             onClick();
-            playSound();
+            //playSound();
+            //if ((this).equals(key)) {
+                //sounds[0].play();
+                playSound(soundIndex);
+                soundIndex++;
+                if (soundIndex > (sounds.length - 1)) {
+                    soundIndex = 0;
+                }
+            //}
         }
         // this boolean is to help reduce number of setImage calls
         // thus can increase efficiency.
-        else if (isImageDown){
+        else if (isImageDown) {
             setImage(image);
             isImageDown = false;
         }
@@ -53,28 +70,42 @@ public abstract class Button extends Actor implements ISoundCentre
     /**
      * Start playing sound if there is sound
      */
-    public void playSound() {
-        if (sound != null) {
-            sound.play();
+    public void playSound(int soundIndex) {
+        if (sounds != null) {
+            sounds[soundIndex].play();
         }
     }
     
     /**
-     * Stop playing sound if there is sound
+     * Pause playing sound if there is sound
      */
-    public void stopSound() {
-        if (sound != null) {
-            sound.stop();
+    public void pauseSound(int soundIndex) {
+        if (sounds != null) {
+            sounds[soundIndex].pause();
         }
+    }
+    public boolean isSoundPlaying (int index) {
+        return sounds[index].isPlaying();
+    }
+    
+    public GreenfootSound getSound (int index){
+        return sounds[index];
+    }
+    
+    public int getSoundNumber (){
+        if (soundIndex == 0){
+            return sounds.length;
+        }
+        return soundIndex - 1;
     }
     
     /**
      * Update volume of the sounds
      * @param volume The current volume
      */
-    public void setVolume(int volume) {
-        if (sound != null) {
-            sound.setVolume(volume);
+    public void setVolume(int volume, int soundIndex) {
+        if (sounds != null) {
+            sounds[soundIndex].setVolume(volume);
         }
     }
 }

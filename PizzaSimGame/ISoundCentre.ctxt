@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=ISoundCentre
+comment0.text=\n\ Write\ a\ description\ of\ class\ SoundCentre\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=volume\ soundIndex
+comment1.target=void\ setVolume(int,\ int)
+comment1.text=\n\ Set\ volume\n\ @param\ volume\ The\ current\ volume\n
+comment2.params=soundIndex
+comment2.target=void\ playSound(int)
+comment2.text=\n\ Play\ sound\n
+comment3.params=soundIndex
+comment3.target=void\ pauseSound(int)
+comment3.text=\n\ Pause\ sound\n
+comment4.params=
+comment4.target=int\ getSoundNumber()
+comment5.params=soundIndex
+comment5.target=boolean\ isSoundPlaying(int)
+comment6.params=soundIndex
+comment6.target=greenfoot.GreenfootSound\ getSound(int)
+numComments=7

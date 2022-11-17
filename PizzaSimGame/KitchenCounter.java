@@ -8,6 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class KitchenCounter extends Target
 {
+    private boolean canMakePizza;
+    
+    public KitchenCounter()
+    {
+        getImage().scale(25, 25);
+        getImage().setTransparency(0);
+    }
     /**
      * Act - do whatever the KitchenCounter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,5 +22,35 @@ public class KitchenCounter extends Target
     public void act()
     {
         // Add your action code here.
+    }
+    
+    public boolean checkCanMakePizza()
+    {
+        if(isTouching(Pizza.class))
+        {
+            canMakePizza = false;
+        }
+        else if(!checkCounterChef())
+        {
+            canMakePizza = false;
+        }
+        else
+        {
+            canMakePizza = true;
+        }
+        return canMakePizza;
+    }
+    /*
+    /**
+     * check if there is a chef around counter
+     */
+    public boolean checkCounterChef(){
+        if(!getWorld().getObjectsAt(getX() + 50, getY(), null).isEmpty()){
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

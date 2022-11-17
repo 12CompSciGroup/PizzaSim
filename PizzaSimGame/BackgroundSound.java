@@ -41,7 +41,7 @@ public class BackgroundSound
     /**
      * Stop sound
      */
-    public void stopSound() {
-        sound.stop();
+    public void pauseSound() {
+        sound.pause();
     };
 }

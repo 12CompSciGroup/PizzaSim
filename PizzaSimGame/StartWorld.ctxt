@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=StartWorld
+comment0.text=\n\ Write\ a\ description\ of\ class\ StartWorld\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=StartWorld()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ StartWorld.\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ started()
+comment4.params=
+comment4.target=void\ stopped()
+numComments=5

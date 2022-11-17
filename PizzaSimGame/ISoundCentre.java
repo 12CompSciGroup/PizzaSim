@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class SoundCentre here.
  * 
@@ -10,15 +11,19 @@ public interface ISoundCentre
      * Set volume
      * @param volume The current volume
      */
-    public void setVolume(int volume);
+    public void setVolume(int volume, int soundIndex);
     
     /**
      * Play sound
      */
-    public void playSound();
+    public void playSound(int soundIndex);
     
     /**
-     * Stop sound
+     * Pause sound
      */
-    public void stopSound();
+    public void pauseSound(int soundIndex);
+    
+    public int getSoundNumber ();
+    public boolean isSoundPlaying (int soundIndex);
+    public GreenfootSound getSound (int soundIndex);
 }
