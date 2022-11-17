@@ -15,4 +15,9 @@ public class SettingButton extends Button
     protected void onClick() {
         
     }
+    
+    public void updateImages(GreenfootImage image, GreenfootImage downImage) {
+        this.image = image;
+        this.downImage = downImage;
+    }
 }
