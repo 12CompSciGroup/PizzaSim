@@ -51,7 +51,7 @@ public class MyWorld extends World
         addObject(new WaitingLine(), Utils.wait1X, Utils.counterY);
         addObject(new WaitingLine(), Utils.wait2X, Utils.counterY);
         addObject(new WaitingLine(), Utils.wait3X, Utils.counterY);
-        
+        addObject(new Robber(1),500,100);
         //addObject(new Pizza(
         
     }

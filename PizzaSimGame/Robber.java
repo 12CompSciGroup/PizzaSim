@@ -22,10 +22,16 @@ public class Robber extends People
 
     public void act()
     {
+        if((getX() == 400 || getX() == 610)&&getY() == 630)
+        {
+            System.out.println("exit once");
+            exit();
+            leave();
+        }
         // Add your action code here.
         moveToDoorAndMoney();
-
         stealMoney();
+        
     }
 
     public void moveToDoorAndMoney()
@@ -39,7 +45,7 @@ public class Robber extends People
         {
             move2();
         }
-        if(location ==3)
+        else if(location ==3)
         {
             move3();
         }
@@ -66,6 +72,7 @@ public class Robber extends People
             }
         }
     }
+
     public void checkLocation()
     {
         if(getX()==500&&getY()==100)
@@ -80,8 +87,9 @@ public class Robber extends People
         {
             location =3;
         }
-        
+
     }
+
     public void move1()
     {
         if(getY() != 710)
@@ -89,29 +97,68 @@ public class Robber extends People
             setLocation(getX(),getY()+1);
         }
     }
+
     public void move2()
     {
         if(resturant ==1)
+        {
+            if(getX() != 610)
             {
-                if(getX() != 610)
+                setLocation(getX()+1,getY());
+            }
+        }
+        else if(resturant == 2)
+        {
+            if(getX() != 400)
+            {
+                setLocation(getX()-1,getY());
+            }
+        }
+    }
+
+    public void move3()
+    {
+        if(getY() != 630)
+        {
+            setLocation(getX(),getY()-1);
+        }
+    }
+
+    public void exit()
+    {
+        if(resturant == 1)
+        {
+            if(getX() == 610 )
+            {
+                if(getX() != 500)
+                {
+                    setLocation(getX()-1, getY());
+                }
+            }
+        }
+        if(resturant == 2)
+        {
+            if(getX() == 400)
+            {
+                if(getX() != 500)
                 {
                     setLocation(getX()+1,getY());
                 }
             }
-            else if(resturant == 2)
-            {
-                if(getX() != 400)
-                {
-                    setLocation(getX()-1,getY());
-                }
-            }
+        }
+
     }
-    public void move3()
+
+    public void leave()
     {
-        if(getY() != 630)
-            {
-             setLocation(getX(),getY()-1);
-            }
+        if(getY() != 800)
+        {
+            setLocation(getX(),getY()+1);
+        }
+        if(getY() == 800)
+        {
+            getWorld().removeObject(this);
+        }
     }
 
 }
