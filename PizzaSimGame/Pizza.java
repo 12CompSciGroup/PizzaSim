@@ -206,9 +206,8 @@ public class Pizza extends Actor
         //getWorld.addObject(new Timer(cookTime), ovenX, ovenY);
         //set the oven filled 
         //find the position of the oven(oven1 oven2 oven3)
-        inOven=true;
-
-        getWorld().addObject(new Clock(cookTime, this), getX(), getY());
+        
+        getWorld().addObject(new Clock(cookTime, this), getX(), getY()-50);
         inOven = true;
 
     }
