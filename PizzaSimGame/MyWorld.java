@@ -16,7 +16,7 @@ public class MyWorld extends World
     //variables for spawning customers
     private int dir, startingY, dirRNG;
     private ArrayList<GreenfootSound> pausedSounds;
-    
+    private int current_money;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -55,6 +55,7 @@ public class MyWorld extends World
         addObject(new WaitingLine(), Utils.wait2X, Utils.counterY);
         addObject(new WaitingLine(), Utils.wait3X, Utils.counterY);
         
+        addObject(new Money_displayer(0), 200, 40);
         //addObject(new Pizza(
         
     }
@@ -128,4 +129,5 @@ public class MyWorld extends World
         // play background sound in loop
         BackgroundSound.getInstance().playSound();
     }
+    
 }

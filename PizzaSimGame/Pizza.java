@@ -27,7 +27,7 @@ public class Pizza extends Actor
     private Customer customer;
     private int chef_Xoffset = 50, chef_Yoffset = 0;
     private boolean inOven;
-    private int cookTime;
+    private int cookTime, price;
     private SimpleTimer timer = new SimpleTimer();
 
     
@@ -47,7 +47,7 @@ public class Pizza extends Actor
     private int imageIndex = 0, toppingIndex = 0;
     private int changeTime = 0;
     private boolean hasCashier = false, hasChef = false;
-    private boolean atCashierCounter = false;
+    private boolean atCashierCounter = false, paid=false;
 
     
     private double exactX;
@@ -74,10 +74,11 @@ public class Pizza extends Actor
         this.sauce = sauce;
         customer = theCustomer;
         atCashierCounter = false;
+        cookTime=60*(strings.length+2);
+        price=3*strings.length;
     }
     
     public void act(){
-        getCookTime(toppings);
         if(!doughFinished)
         {
             spreadDough();
@@ -94,6 +95,11 @@ public class Pizza extends Actor
         {
             addToppings(toppings);
 
+        }
+        if(atCashierCounter&&paid==false){
+            Money_displayer money_displayer=(Money_displayer)getWorld().getObjectsAt(200, 40, Money_displayer.class).get(0);
+            money_displayer.setDisplayer(money_displayer.getMoney()+price);
+            paid=true;
         }
         moveMe();
     }
@@ -171,10 +177,9 @@ public class Pizza extends Actor
 
      */
    
-    public int getCookTime(String[] strings){
+    public int getCookTime(){
         //return cooktime
         //add the time for all toppings
-        cookTime=60*(strings.length+2);
         return cookTime;
 
     }
