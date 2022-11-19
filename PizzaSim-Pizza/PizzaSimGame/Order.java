@@ -28,7 +28,6 @@ public class Order extends Actor
         sauce = sauceType;
         customer=theCustomer;
         dough = new GreenfootImage("pizzaBase.png");
-        chatBox.scale(60, 70);
         chatBox.drawImage(dough, 12, 5);
         
     }

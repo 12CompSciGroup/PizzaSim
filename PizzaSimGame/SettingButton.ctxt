@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=SettingButton
-comment0.text=\n\ Write\ a\ description\ of\ class\ SettingButton\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=image\ downImage
-comment1.target=SettingButton(greenfoot.GreenfootImage,\ greenfoot.GreenfootImage)
-comment2.params=
-comment2.target=void\ onClick()
-numComments=3
