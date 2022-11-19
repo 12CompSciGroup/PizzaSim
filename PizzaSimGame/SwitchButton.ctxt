@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=SwitchButton
+comment0.text=\n\ Write\ a\ description\ of\ class\ SwitchButton\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=SwitchButton()
+comment2.params=toLeft
+comment2.target=void\ switchImage(boolean)
+comment3.params=
+comment3.target=void\ onClick()
+numComments=4

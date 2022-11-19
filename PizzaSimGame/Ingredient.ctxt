@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Ingredient
+comment0.text=\n\ Write\ a\ description\ of\ class\ Ingredients\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=ingredient
+comment1.target=Ingredient(java.lang.String)
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Act\ -\ do\ whatever\ the\ Ingredients\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment3.params=x\ y
+comment3.target=void\ setLocation(double,\ double)
+comment3.text=\n\ Set\ the\ location\ using\ exact\ coordinates.\n\ \n\ @param\ x\ the\ new\ x\ location\n\ @param\ y\ the\ new\ y\ location\n
+comment4.params=x\ y
+comment4.target=void\ setLocation(int,\ int)
+comment4.text=\n\ Set\ the\ location\ using\ integer\ coordinates.\n\ (Overrides\ the\ method\ in\ Actor.)\ \ \ \ \n\ \n\ @param\ x\ the\ new\ x\ location\n\ @param\ y\ the\ new\ y\ location\n
+numComments=5

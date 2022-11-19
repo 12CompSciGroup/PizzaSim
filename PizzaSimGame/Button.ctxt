@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Button
+comment0.text=\n\ Write\ a\ description\ of\ class\ Button\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Button()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Act\ -\ do\ whatever\ the\ Button\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment3.params=
+comment3.target=void\ onClick()
+comment4.params=soundIndex
+comment4.target=void\ playSound(int)
+comment4.text=\n\ Start\ playing\ sound\ if\ there\ is\ sound\n
+comment5.params=soundIndex
+comment5.target=void\ pauseSound(int)
+comment5.text=\n\ Pause\ playing\ sound\ if\ there\ is\ sound\n
+comment6.params=index
+comment6.target=boolean\ isSoundPlaying(int)
+comment7.params=index
+comment7.target=greenfoot.GreenfootSound\ getSound(int)
+comment8.params=
+comment8.target=int\ getSoundNumber()
+comment9.params=volume\ soundIndex
+comment9.target=void\ setVolume(int,\ int)
+comment9.text=\n\ Update\ volume\ of\ the\ sounds\n\ @param\ volume\ The\ current\ volume\n
+numComments=10

@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Chef
+comment0.text=\n\ Write\ a\ description\ of\ class\ Chef\ here.\n\ \n\ @author\ Anson\ Ho\ \n\ @version\ V.1\n
+comment1.params=counterXCoord\ counterYCoord\ scaleX\ scaleY
+comment1.target=Chef(int,\ int,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ animate()
+comment4.params=
+comment4.target=void\ moveToOven()
+comment5.params=counterXCoord\ counterYCoord
+comment5.target=void\ moveToCounter(int,\ int)
+comment6.params=pizza
+comment6.target=void\ assignPizza(Pizza)
+comment7.params=
+comment7.target=boolean\ canPickUpPizza()
+comment8.params=
+comment8.target=void\ checkOpenOven()
+comment9.params=degrees
+comment9.target=void\ rotate(int)
+numComments=10
