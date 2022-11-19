@@ -7,26 +7,33 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public abstract class Button extends Actor implements ISoundCentre
-{
+{   
     protected GreenfootImage image;
     protected GreenfootImage downImage;
-    //protected GreenfootSound sound;
-    protected GreenfootSound[] sounds;
+    protected GreenfootImage hoverImage;
+
+    private static GreenfootSound[] sounds = {
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav")
+    };
     private int soundNum;
-    private static int soundIndex;
-    protected boolean isImageDown;
+    private int soundIndex;
+    private int downTik;
+    private boolean isHovered;
     
-    public Button(GreenfootImage image, GreenfootImage downImage) {
-        this.image = image;
-        soundNum = 10;
-        soundIndex = 0;
-        this.downImage = downImage;
-        isImageDown = false;
-        setImage(image);
-        sounds = new GreenfootSound[soundNum];
-        for (int i = 0; i < soundNum; i++) {
-            sounds[i] = new GreenfootSound("click.wav");
-        }
+    public Button() {
+        this.downTik = 0;
+        this.soundNum = sounds.length;
+        this.soundIndex = 0;
+        this.isHovered = false;
     }
     
     /**
@@ -35,32 +42,31 @@ public abstract class Button extends Actor implements ISoundCentre
      */
     public void act()
     {
-        //if(Greenfoot.mouseClicked(this)) {
-        //    onClick();
-        //    playSound();
-        //}
-        //onHover();
-        String key = Greenfoot.getKey();
-        
         if (Greenfoot.mouseClicked(this)) {
-            setImage(downImage);
-            isImageDown = true;
+            downTik = 20;
             onClick();
-            //playSound();
-            //if ((this).equals(key)) {
-                //sounds[0].play();
-                playSound(soundIndex);
-                soundIndex++;
-                if (soundIndex > (sounds.length - 1)) {
-                    soundIndex = 0;
-                }
-            //}
+            playSound(soundIndex);
+            soundIndex++;
+            if (soundIndex > (sounds.length - 1)) {
+                soundIndex = 0;
+            }
         }
-        // this boolean is to help reduce number of setImage calls
-        // thus can increase efficiency.
-        else if (isImageDown) {
+        else if (Greenfoot.mouseMoved(this)) {
+            isHovered = true;
+        }
+        else if (Greenfoot.mouseMoved(null)) {
+            isHovered = false;
+        }
+        
+        if (downTik > 0) {
+            setImage(downImage);
+            downTik--;
+        }
+        else if (isHovered) {
+            setImage(hoverImage);
+        }
+        else {
             setImage(image);
-            isImageDown = false;
         }
     }
     

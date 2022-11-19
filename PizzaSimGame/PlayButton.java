@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayButton extends Button
 {
     public PlayButton() {
-        super(new GreenfootImage("play.png"), new GreenfootImage("playDown.png"));
-    }
-    
-    public PlayButton(GreenfootImage playImage, GreenfootImage playDownImage) {
-        super(playImage, playDownImage);
+        super();
+        
+        this.image = new GreenfootImage("playButton.png");
+        this.downImage = new GreenfootImage("playButtonDown.png");
+        this.hoverImage = new GreenfootImage("playButtonHover.png");
     }
     
     protected void onClick() {

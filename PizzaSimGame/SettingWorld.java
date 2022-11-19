@@ -12,42 +12,36 @@ public class SettingWorld extends World
     private GreenfootImage imageMama;
     private GreenfootImage imagePapa;
     
-    private SettingButton chefAdd;
-    private SettingButton chefMinus;
-    private SettingButton cashierAdd;
-    private SettingButton cashierMinus;
-    private SettingButton moneyAdd;
-    private SettingButton moneyMinus;
-    private SettingButton robberCostAdd;
-    private SettingButton robberCostMinus;
-    private SettingButton switchButton;
+    private PlusButton chefPlus;
+    private MinusButton chefMinus;
+    private PlusButton cashierPlus;
+    private MinusButton cashierMinus;
+    private PlusButton moneyPlus;
+    private MinusButton moneyMinus;
+    private PlusButton robberStealPlus;
+    private MinusButton robberStealMinus;
+    private SwitchButton switchButton;
     private PlayButton playButton;
+    
     private Label chefNumLabel;
     private Label cashierNumLabel;
     private Label moneyNumLabel;
-    private Label robberCostLabel;
-    
-    private GreenfootImage switchImageRight;
-    private GreenfootImage switchDownImageRight;
-    private GreenfootImage switchImageLeft;
-    private GreenfootImage switchDownImageLeft;
-    private GreenfootImage playImage;
-    private GreenfootImage playDownImage;
+    private Label robberStealLabel;
     
     private final int DEFAULT_CHEF_NUM = 2;
     private final int DEFAULT_CASHIER_NUM = 1;
     private final int DEFAULT_MONEY_NUM = 30;
-    private final int DEFAULT_ROBBER_COST = 10;
+    private final int DEFAULT_ROBBER_STEAL = 10;
     
     private int chefNumMama;
     private int cashierNumMama;
     private int moneyNumMama;
-    private int robberCostMama;
+    private int robberStealMama;
     
     private int chefNumPapa;
     private int cashierNumPapa;
     private int moneyNumPapa;
-    private int robberCostPapa;
+    private int robberStealPapa;
     
     private boolean isMama;
     
@@ -65,66 +59,53 @@ public class SettingWorld extends World
         this.chefNumMama = DEFAULT_CHEF_NUM;
         this.cashierNumMama = DEFAULT_CASHIER_NUM;
         this.moneyNumMama = DEFAULT_MONEY_NUM;
-        this.robberCostMama = DEFAULT_ROBBER_COST;
+        this.robberStealMama = DEFAULT_ROBBER_STEAL;
         
         this.chefNumPapa = DEFAULT_CHEF_NUM;
         this.cashierNumPapa = DEFAULT_CASHIER_NUM;
         this.moneyNumPapa = DEFAULT_MONEY_NUM;
-        this.robberCostPapa = DEFAULT_ROBBER_COST;
+        this.robberStealPapa = DEFAULT_ROBBER_STEAL;
         
         this.imageMama = new GreenfootImage("settingScreenMAMA.png");
         this.imagePapa = new GreenfootImage("settingScreenPAPA.png");
         
         setBackground(imageMama);
+        this.switchButton = new SwitchButton();
+        this.playButton = new PlayButton();
         
-        GreenfootImage plusImage = new GreenfootImage("plusIcon.png");
-        GreenfootImage minusImage = new GreenfootImage("minusIcon.png");
-        GreenfootImage plusDownImage = new GreenfootImage("plusDownIcon.png");
-        GreenfootImage minusDownImage = new GreenfootImage("minusDownIcon.png");
-        
-        switchImageRight = new GreenfootImage("rightButton.png");
-        switchDownImageRight = new GreenfootImage("rightButtonDown.png");
-        switchImageLeft = new GreenfootImage("leftButton.png");
-        switchDownImageLeft = new GreenfootImage("leftButtonDown.png");
-        playImage = new GreenfootImage("play.png");
-        playDownImage = new GreenfootImage("playDown.png");
-        
-        this.switchButton = new SettingButton(switchImageRight, switchDownImageRight);
-        this.playButton = new PlayButton(playImage, playDownImage);
-        
-        this.chefAdd = new SettingButton(plusImage, plusDownImage);
-        this.chefMinus = new SettingButton(minusImage, minusDownImage);
+        this.chefPlus = new PlusButton();
+        this.chefMinus = new MinusButton();
         this.chefNumLabel = new Label("");
         
-        this.cashierAdd = new SettingButton(plusImage, plusDownImage);
-        this.cashierMinus = new SettingButton(minusImage, minusDownImage);
+        this.cashierPlus = new PlusButton();
+        this.cashierMinus = new MinusButton();
         this.cashierNumLabel = new Label("");
         
-        this.moneyAdd = new SettingButton(plusImage, plusDownImage);
-        this.moneyMinus = new SettingButton(minusImage, minusDownImage);
+        this.moneyPlus = new PlusButton();
+        this.moneyMinus = new MinusButton();
         this.moneyNumLabel = new Label("");
         
-        this.robberCostAdd = new SettingButton(plusImage, plusDownImage);
-        this.robberCostMinus = new SettingButton(minusImage, minusDownImage);
-        this.robberCostLabel = new Label("");
+        this.robberStealPlus = new PlusButton();
+        this.robberStealMinus = new MinusButton();
+        this.robberStealLabel = new Label("");
         
-        addObject(this.chefAdd, 900, 300);
-        addObject(this.chefMinus, 800, 300);
-        addObject(this.chefNumLabel, 850, 300);
+        addObject(this.chefPlus, 900, 310);
+        addObject(this.chefMinus, 800, 310);
+        addObject(this.chefNumLabel, 850, 310);
         
-        addObject(this.cashierAdd, 900, 380);
-        addObject(this.cashierMinus, 800, 380);
-        addObject(this.cashierNumLabel, 850, 380);
+        addObject(this.cashierPlus, 900, 365);
+        addObject(this.cashierMinus, 800, 365);
+        addObject(this.cashierNumLabel, 850, 365);
         
-        addObject(this.moneyAdd, 900, 460);
-        addObject(this.moneyMinus, 800, 460);
-        addObject(this.moneyNumLabel, 850, 460);
+        addObject(this.moneyPlus, 900, 425);
+        addObject(this.moneyMinus, 800, 425);
+        addObject(this.moneyNumLabel, 850, 425);
         
-        addObject(this.robberCostAdd, 900, 540);
-        addObject(this.robberCostMinus, 800, 540);
-        addObject(this.robberCostLabel, 850, 540);
+        addObject(this.robberStealPlus, 900, 495);
+        addObject(this.robberStealMinus, 800, 500);
+        addObject(this.robberStealLabel, 850, 495);
         
-        addObject(this.switchButton, 200, 710);
+        addObject(this.switchButton, 230, 710);
         
         switchSettings();
     }
@@ -135,7 +116,7 @@ public class SettingWorld extends World
         }
 
         if (isMama) {
-            if (Greenfoot.mouseClicked(chefAdd)) {
+            if (Greenfoot.mouseClicked(chefPlus) && this.chefNumMama < 10) {
                 this.chefNumMama++;
                 this.chefNumLabel.updateLabel(this.chefNumMama);
             }
@@ -143,7 +124,7 @@ public class SettingWorld extends World
                 this.chefNumMama--;
                 this.chefNumLabel.updateLabel(this.chefNumMama);
             }
-            if (Greenfoot.mouseClicked(cashierAdd)) {
+            if (Greenfoot.mouseClicked(cashierPlus) && this.cashierNumMama < 10) {
                 this.cashierNumMama++;
                 this.cashierNumLabel.updateLabel(this.cashierNumMama);
             }
@@ -151,7 +132,7 @@ public class SettingWorld extends World
                 this.cashierNumMama--;
                 this.cashierNumLabel.updateLabel(this.cashierNumMama);
             }
-            if (Greenfoot.mouseClicked(moneyAdd)) {
+            if (Greenfoot.mouseClicked(moneyPlus) && moneyNumMama < 1000) {
                 this.moneyNumMama += 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumMama);
             }
@@ -159,17 +140,17 @@ public class SettingWorld extends World
                 this.moneyNumMama -= 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumMama);
             }
-            if (Greenfoot.mouseClicked(robberCostAdd)) {
-                this.robberCostMama += 5;
-                this.robberCostLabel.updateLabel(this.robberCostMama);
+            if (Greenfoot.mouseClicked(robberStealPlus) && this.robberStealMama < 100) {
+                this.robberStealMama += 5;
+                this.robberStealLabel.updateLabel(this.robberStealMama);
             }
-            if (Greenfoot.mouseClicked(robberCostMinus) && this.robberCostMama > 5) {
-                this.robberCostMama -= 5;
-                this.robberCostLabel.updateLabel(this.robberCostMama);
+            if (Greenfoot.mouseClicked(robberStealMinus) && this.robberStealMama > 5) {
+                this.robberStealMama -= 5;
+                this.robberStealLabel.updateLabel(this.robberStealMama);
             }
         }
         else {
-            if (Greenfoot.mouseClicked(chefAdd)) {
+            if (Greenfoot.mouseClicked(chefPlus) && this.chefNumPapa < 10) {
                 this.chefNumPapa++;
                 this.chefNumLabel.updateLabel(this.chefNumPapa);
             }
@@ -177,7 +158,7 @@ public class SettingWorld extends World
                 this.chefNumPapa--;
                 this.chefNumLabel.updateLabel(this.chefNumPapa);
             }
-            if (Greenfoot.mouseClicked(cashierAdd)) {
+            if (Greenfoot.mouseClicked(cashierPlus) && this.cashierNumPapa < 10) {
                 this.cashierNumPapa++;
                 this.cashierNumLabel.updateLabel(this.cashierNumPapa);
             }
@@ -185,7 +166,7 @@ public class SettingWorld extends World
                 this.cashierNumPapa--;
                 this.cashierNumLabel.updateLabel(this.cashierNumPapa);
             }
-            if (Greenfoot.mouseClicked(moneyAdd)) {
+            if (Greenfoot.mouseClicked(moneyPlus) && this.moneyNumPapa < 1000) {
                 this.moneyNumPapa += 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumPapa);
             }
@@ -193,13 +174,13 @@ public class SettingWorld extends World
                 this.moneyNumPapa -= 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumPapa);
             }
-            if (Greenfoot.mouseClicked(robberCostAdd)) {
-                this.robberCostPapa += 5;
-                this.robberCostLabel.updateLabel(this.robberCostPapa);
+            if (Greenfoot.mouseClicked(robberStealPlus) && this.robberStealPapa < 100) {
+                this.robberStealPapa += 5;
+                this.robberStealLabel.updateLabel(this.robberStealPapa);
             }
-            if (Greenfoot.mouseClicked(robberCostMinus) && this.robberCostPapa > 5) {
-                this.robberCostPapa -= 5;
-                this.robberCostLabel.updateLabel(this.robberCostPapa);
+            if (Greenfoot.mouseClicked(robberStealMinus) && this.robberStealPapa > 5) {
+                this.robberStealPapa -= 5;
+                this.robberStealLabel.updateLabel(this.robberStealPapa);
             }
         }
     }
@@ -213,25 +194,23 @@ public class SettingWorld extends World
     }
     
     private void switchSettings() {
-        // TODO: update (buttons and lables) locations
-        if (!this.isMama) {
-            setBackground(imageMama);
-            this.switchButton.updateImages(switchImageRight, switchDownImageRight);
-            this.chefNumLabel.updateLabel(this.chefNumMama);
-            this.cashierNumLabel.updateLabel(this.cashierNumMama);
-            this.moneyNumLabel.updateLabel(this.moneyNumMama);
-            this.robberCostLabel.updateLabel(this.robberCostMama);
-            
-            removeObject(playButton);
-        }
-        else {
+        if (this.isMama) {
             setBackground(imagePapa);
-            this.switchButton.updateImages(switchImageLeft, switchDownImageLeft);
+            this.switchButton.switchImage(this.isMama);
             this.chefNumLabel.updateLabel(this.chefNumPapa);
             this.cashierNumLabel.updateLabel(this.cashierNumPapa);
             this.moneyNumLabel.updateLabel(this.moneyNumPapa);
-            this.robberCostLabel.updateLabel(this.robberCostPapa);
-            addObject(playButton, 800, 720);
+            this.robberStealLabel.updateLabel(this.robberStealPapa);
+            addObject(playButton, 780, 710);
+        }
+        else {
+            setBackground(imageMama);
+            this.switchButton.switchImage(this.isMama);
+            this.chefNumLabel.updateLabel(this.chefNumMama);
+            this.cashierNumLabel.updateLabel(this.cashierNumMama);
+            this.moneyNumLabel.updateLabel(this.moneyNumMama);
+            this.robberStealLabel.updateLabel(this.robberStealMama);
+            removeObject(playButton);
         }
         
         switchLocation();
@@ -240,34 +219,30 @@ public class SettingWorld extends World
     }
     
     private void switchLocation() {
+        int labelX, plusX, minusX;
         if (isMama) {
-            this.chefNumLabel.setLocation(445, 300);
-            this.cashierNumLabel.setLocation(445, 380);
-            this.moneyNumLabel.setLocation(445, 460);
-            this.robberCostLabel.setLocation(445, 540);
-            this.chefAdd.setLocation(495, 300);
-            this.chefMinus.setLocation(395, 300);
-            this.cashierAdd.setLocation(495, 380);
-            this.cashierMinus.setLocation(395, 380);
-            this.moneyAdd.setLocation(495, 460);
-            this.moneyMinus.setLocation(395, 460);
-            this.robberCostAdd.setLocation(495, 540);
-            this.robberCostMinus.setLocation(395, 540);
+            labelX = 445;
+            plusX = 495;
+            minusX = 395;
         }
         else {
-            this.chefNumLabel.setLocation(850, 300);
-            this.cashierNumLabel.setLocation(850, 380);
-            this.moneyNumLabel.setLocation(850, 460);
-            this.robberCostLabel.setLocation(850, 540);
-            this.chefAdd.setLocation(900, 300);
-            this.chefMinus.setLocation(800, 300);
-            this.cashierAdd.setLocation(900, 380);
-            this.cashierMinus.setLocation(800, 380);
-            this.moneyAdd.setLocation(900, 460);
-            this.moneyMinus.setLocation(800, 460);
-            this.robberCostAdd.setLocation(900, 540);
-            this.robberCostMinus.setLocation(800, 540);
+            labelX = 850;
+            plusX = 900;
+            minusX = 800;
         }
+        
+        this.chefNumLabel.setLocation(labelX, 310);
+        this.cashierNumLabel.setLocation(labelX, 365);
+        this.moneyNumLabel.setLocation(labelX, 425);
+        this.robberStealLabel.setLocation(labelX, 495);
+        this.chefPlus.setLocation(plusX, 310);
+        this.chefMinus.setLocation(minusX, 310);
+        this.cashierPlus.setLocation(plusX, 365);
+        this.cashierMinus.setLocation(minusX, 365);
+        this.moneyPlus.setLocation(plusX, 425);
+        this.moneyMinus.setLocation(minusX, 425);
+        this.robberStealPlus.setLocation(plusX, 495);
+        this.robberStealMinus.setLocation(minusX, 495);
     }
     
     public int getChefNumMama() {
@@ -282,8 +257,8 @@ public class SettingWorld extends World
         return this.moneyNumMama;
     }
     
-    public int getRobberCostMama() {
-        return this.robberCostMama;
+    public int getRobberStealMama() {
+        return this.robberStealMama;
     }
     
     public int getChefNumPapa() {
@@ -298,7 +273,7 @@ public class SettingWorld extends World
         return this.moneyNumPapa;
     }
     
-    public int getRobberCostPapa() {
-        return this.robberCostPapa;
+    public int getRobberStealPapa() {
+        return this.robberStealPapa;
     }
 }
