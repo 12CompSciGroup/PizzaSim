@@ -12,8 +12,8 @@ public class PlayButton extends Button
         super();
         
         this.image = new GreenfootImage("playButton.png");
-        this.downImage = new GreenfootImage("playButtonDown.png");
-        this.hoverImage = new GreenfootImage("playButtonHover.png");
+        this.downImage = new GreenfootImage("playButtonDOWN.png");
+        this.hoverImage = new GreenfootImage("playButtonHOVER.png");
     }
     
     protected void onClick() {

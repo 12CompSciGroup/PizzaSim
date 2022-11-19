@@ -9,18 +9,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SwitchButton extends Button
 {
     GreenfootImage switchImageRight = new GreenfootImage("rightButton.png");
-    GreenfootImage switchDownImageRight = new GreenfootImage("rightButtonDown.png");
-    GreenfootImage switchImageHoverRight = new GreenfootImage("rightButtonHover.png");
+    GreenfootImage switchDownImageRight = new GreenfootImage("rightButtonDOWN.png");
+    GreenfootImage switchImageHoverRight = new GreenfootImage("rightButtonHOVER.png");
     GreenfootImage switchImageLeft = new GreenfootImage("leftButton.png");
-    GreenfootImage switchDownImageLeft = new GreenfootImage("leftButtonDown.png");
-    GreenfootImage switchImageHoverLeft = new GreenfootImage("leftButtonHover.png");
+    GreenfootImage switchDownImageLeft = new GreenfootImage("leftButtonDOWN.png");
+    GreenfootImage switchImageHoverLeft = new GreenfootImage("leftButtonHOVER.png");
     
     public SwitchButton() {
         super();
         
-        this.image = new GreenfootImage("rightButton.png");
-        this.downImage = new GreenfootImage("rightButtonDown.png");
-        this.hoverImage = new GreenfootImage("rightButtonHover.png");
+        this.image = switchImageLeft;
+        this.downImage = switchDownImageLeft;
+        this.hoverImage = switchImageHoverLeft;
     }
     
     public void switchImage(boolean toLeft) {
