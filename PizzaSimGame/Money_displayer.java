@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Money_displayer here.
  * 
- * @author (your name) 
+ * @author Yuxin Li(your name) 
  * @version (a version number or a date)
  */
 public class Money_displayer extends Actor
