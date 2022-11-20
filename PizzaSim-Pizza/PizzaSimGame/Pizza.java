@@ -28,7 +28,8 @@ public class Pizza extends Actor
     private int chef_Xoffset = 50, chef_Yoffset = 0;
     private boolean inOven;
     private int cookTime, price;
-    private SimpleTimer timer = new SimpleTimer();
+    private int toppingTime=60;
+    
 
     
     private GreenfootImage pizza = new GreenfootImage("pizzaBase.png");
@@ -87,10 +88,12 @@ public class Pizza extends Actor
         }
         if(doughFinished && !sauceFinished)
         {
+            toppingTime--;
             addSauce(sauce);
         }
         if(doughFinished && sauceFinished && !toppingsFinished)
         {
+            toppingTime--;
             addToppings(toppings);
 
         }
@@ -108,6 +111,7 @@ public class Pizza extends Actor
             setLocation(customer.getX(), customer.getY());
         }
     }
+    
     /**
      * an animation of the dough spreading process
      */
@@ -141,27 +145,25 @@ public class Pizza extends Actor
 
     public void addSauce(String sauce)
     {
-        if(timer.millisElapsed() > 1000)
+        if(toppingTime==0)
         {
-            timer.mark();
             imageSauce = new GreenfootImage("sauce" + sauce + ".png");
             getImage().drawImage(imageSauce, 0 , 0);
             sauceFinished = true;
+            toppingTime=15;
         }
     }
     
     public void addToppings(String[] strings){
-        for(int i=0; i<toppings.length; i++){
-            timer.mark();
-            if(timer.millisElapsed() > 1000*(i+2)){
-                GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
-                getImage().drawImage(topping, 0, 0);
-                toppingIndex++;
-            }
-            if(toppingIndex == toppings.length)
-            {
-                toppingsFinished = true;
-            }
+        if(toppingIndex < strings.length && toppingTime==0){
+            GreenfootImage topping = new GreenfootImage(toppings[toppingIndex] + ".png");
+            getImage().drawImage(topping, 0, 0);
+            toppingIndex++;
+            toppingTime=15;
+        }
+        if(toppingIndex == strings.length)
+        {
+            toppingsFinished = true;
         }
     }
     /**

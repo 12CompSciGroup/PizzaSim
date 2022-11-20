@@ -19,7 +19,7 @@ public class Customer extends People
     
     private boolean inStore, ordered, pickedUp;
     
-    private String[] order = new String[10];
+    private String[] order = new String[3];
     private String dough = "thin", sauce = "tomato", topping;
     private Order myOrder;
     private Pizza myPizza;
