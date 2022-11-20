@@ -151,12 +151,9 @@ public class Pizza extends Actor
     }
     
     public void addToppings(String[] strings){
-        //calculate total cooktime
-        //placeholders
-        if(timer.millisElapsed() > 1000)
-        {
+        for(int i=0; i<toppings.length; i++){
             timer.mark();
-            for(int i=0; i<toppings.length; i++){
+            if(timer.millisElapsed() > 1000*(i+2)){
                 GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
                 getImage().drawImage(topping, 0, 0);
                 toppingIndex++;
@@ -165,13 +162,11 @@ public class Pizza extends Actor
             {
                 toppingsFinished = true;
             }
-
         }
     }
     /**
      * get the cook time required for the pizz
      */
-   
     public int getCookTime(){
         //return cooktime
         //add the time for all toppings
