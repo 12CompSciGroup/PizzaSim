@@ -98,8 +98,8 @@ public class Pizza extends Actor
 
         }
         if(atCashierCounter&&paid==false){
-            Money_displayer money_displayer=(Money_displayer)getWorld().getObjectsAt(200, 40, Money_displayer.class).get(0);
-            money_displayer.setDisplayer(money_displayer.getMoney()+price);
+            //Money_displayer money_displayer=(Money_displayer)getWorld().getObjectsAt(200, 40, Money_displayer.class).get(0);
+            //money_displayer.setDisplayer(money_displayer.getMoney()+price);
             paid=true;
         }
         moveMe();

@@ -22,7 +22,7 @@ public class Order extends Actor
     private Customer customer;
     private boolean madePizza = false;
     private static KitchenCounter kitchen1, kitchen2;
-    
+    private int price=5;
     public Order(String sauceType, String[] toppingTypes, Customer theCustomer){
         toppings = toppingTypes;
         sauce = sauceType;
@@ -67,9 +67,38 @@ public class Order extends Actor
     
     public void addedToWorld(World w){
         drawOrder();
+        calculatePrice(sauce, toppings);
+        Money_displayer money_displayer=(Money_displayer)getWorld().getObjectsAt(200, 40, Money_displayer.class).get(0);
+        money_displayer.setDisplayer(money_displayer.getMoney()+price);
         makePizza();
     }
     
+    public int calculatePrice(String order, String[] toppingTypes){
+        if(order=="bbq"){
+            price+=2;
+        }
+        if(order=="tomato"){
+            price+=1;
+        }
+        for(int i=0; i<toppingTypes.length; i++){
+            if(toppingTypes[i]=="cheese"){
+                price+=2;
+            }
+            if(toppingTypes[i]=="ham"){
+                price+=3;
+            }
+            if(toppingTypes[i]=="olive"){
+                price+=2;
+            }
+            if(toppingTypes[i]=="pepperoni"){
+                price+=1;
+            }
+            if(toppingTypes[i]=="peppers"){
+                price+=2;
+            }
+        }
+        return price;
+    }
     /**
      * move the order with the customer
      */
