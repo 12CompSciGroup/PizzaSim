@@ -64,11 +64,13 @@ public class Pizza extends Actor
         imageIndex=0;
         changeTime=0;
         //this.customer=customer;
+        cookTime=300;
         this.sauce=sauce;
         hasChef=false;
         toppings=strings;
         burn=false;
     }
+    
     public Pizza(String[] strings, String sauce, Customer theCustomer){
         toppings = strings;
         this.sauce = sauce;
@@ -82,10 +84,6 @@ public class Pizza extends Actor
         if(!doughFinished)
         {
             spreadDough();
-        }
-    
-        if(doughFinished&&firstStage_finished==false){
-            addToppings(sauce, toppings);
         }
         if(doughFinished && !sauceFinished)
         {
@@ -132,16 +130,14 @@ public class Pizza extends Actor
         */
     }
 
-    public void addToppings(String sauce, String[] strings){
-        //calculate total cooktime
-        //placeholders
-        theSauce=new GreenfootImage("sauce"+sauce+".png");
-        getImage().drawImage(theSauce,0,0);
-        for(int i=0; i<toppings.length; i++){
-            GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
-            getImage().drawImage(topping, 0, 0);
-        }
-    }
+    //public void addToppings(String sauce, String[] strings){
+        //theSauce=new GreenfootImage("sauce"+sauce+".png");
+        //getImage().drawImage(theSauce, 0, 0);
+        //for(int i=0; i<toppings.length; i++){
+            //GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
+            //getImage().drawImage(topping, 0, 0);
+        //}
+    //}
 
     public void addSauce(String sauce)
     {
@@ -173,8 +169,7 @@ public class Pizza extends Actor
         }
     }
     /**
-     * calculate the cook time required for the pizza
-
+     * get the cook time required for the pizz
      */
    
     public int getCookTime(){
