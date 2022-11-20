@@ -38,7 +38,7 @@ public class Clock extends Actor
         this.time=time;
         imageIndex=0;
         timeIndex=time/12;
-        burnTime=90;
+        burnTime=450;
         burnAct=0;
         this.pizza=pizza;
     }
@@ -61,7 +61,6 @@ public class Clock extends Actor
             clock_Alarm();
             if(burnTime==0){
                 pizza.burnPizza();
-                //smoke flowing
             }
         }
         else if(imageIndex<11&&timeIndex==0){
