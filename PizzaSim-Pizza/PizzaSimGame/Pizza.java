@@ -116,6 +116,7 @@ public class Pizza extends Actor
      * an animation of the dough spreading process
      */
     public void spreadDough(){
+        pizza.scale(50,50);
         setImage(pizza);
         doughFinished = true;
         /*
@@ -148,18 +149,20 @@ public class Pizza extends Actor
         if(toppingTime==0)
         {
             imageSauce = new GreenfootImage("sauce" + sauce + ".png");
+            imageSauce.scale(50,50);
             getImage().drawImage(imageSauce, 0 , 0);
             sauceFinished = true;
-            toppingTime=15;
+            toppingTime=60;
         }
     }
     
     public void addToppings(String[] strings){
         if(toppingIndex < strings.length && toppingTime==0){
             GreenfootImage topping = new GreenfootImage(toppings[toppingIndex] + ".png");
+            topping.scale(50,50);
             getImage().drawImage(topping, 0, 0);
             toppingIndex++;
-            toppingTime=15;
+            toppingTime=60;
         }
         if(toppingIndex == strings.length)
         {
