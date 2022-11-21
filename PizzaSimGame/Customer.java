@@ -4,6 +4,12 @@ import java.util.List;
 /**
  * Write a description of class Customer here.
  * 
+ * I changed ur code a bit to add the cheese layer, 
+ * also the order is attached to ur customer objects and 
+ * it can move with the customer. I added some features in pizza,
+ * order, and customer class so the customer can pickup the pizza
+ * and leave the store. From Yuxin
+ * 
  * @author (your name) 
  * @version (a version number or a date)
  */
@@ -13,9 +19,10 @@ public class Customer extends People
     
     private boolean inStore, ordered, pickedUp;
     
-    private String[] order = new String[10];
+    private String[] order = new String[3];
     private String dough = "thin", sauce = "tomato", topping;
-    
+    private Order myOrder;
+    private Pizza myPizza;
     private int imageRNG, rotation;
     private String gender;
     private GreenfootImage upIMG, downIMG, leftIMG, rightIMG;
@@ -54,16 +61,22 @@ public class Customer extends People
         
         for(int i = 0; i < order.length; i++)
         {
-            toppingRNG = Greenfoot.getRandomNumber(3);
+            toppingRNG = Greenfoot.getRandomNumber(5);
             switch (toppingRNG){
             case 0:
-                topping = "pepperoni";
+                topping = "cheese";
                 break;
             case 1:
-                topping = "peppers";
+                topping = "pepperoni";
                 break;
             case 2:
+                topping = "peppers";
+                break;
+            case 3:
                 topping = "ham";
+                break;
+            case 4:
+                topping = "olives";
                 break;
             }
             order[i] = topping;
@@ -88,12 +101,13 @@ public class Customer extends People
         }
         
         if (inStore == true){
+            
             if (ordered == false && pickedUp == false){
                 moveToCashier();
             } else if (ordered == true){
                 if (pickedUp == false){
                     lineUp();
-                } else {
+                } else if (pickedUp == true){
                     leave();
                 }
             }
@@ -182,9 +196,17 @@ public class Customer extends People
     }
     
     public void order (){
-        getWorld().addObject(new Order(sauce, order), getX() + 20, getY() - (getImage().getHeight() / 2) - 20);
+        myOrder=new Order(sauce, order, this);
+        getWorld().addObject(myOrder, getX() + 20, getY() - (getImage().getHeight() / 2) - 20);
     }
     
+    public void setPizza(Pizza pizza){
+        myPizza=pizza;
+    }
+    
+    public void setPickedUp(){
+        pickedUp=true;
+    }
     public void lineUp(){
         if (rotation == UP){
             if (getX() == Utils.cashier1X || getX() == Utils.cashier2X){
@@ -193,13 +215,12 @@ public class Customer extends People
                 if (getY() != Utils.counterY){
                     setLocation(getX(), getY() - 1);
                 } else {
-                    pickedUp = true;
-                    
+                    //pickedUp = true;
                     if (getX() == Utils.wait1X){
                         wait1IsFree = true;
                     } else if (getX() == Utils.wait2X){
                         wait2IsFree = true;
-                    } else {
+                    } else if (getX() == Utils.wait3X){
                         wait3IsFree = true;
                     }
                 }
@@ -282,9 +303,14 @@ public class Customer extends People
     
     public void atEdge(){
         if (dir == 1 && getY() == 799){
+            getWorld().removeObject(myOrder);
+            getWorld().removeObject(myPizza);
             getWorld().removeObject(this);
         } else if (dir == -1 && getY() == 81){
+            getWorld().removeObject(myOrder);
+            getWorld().removeObject(myPizza);
             getWorld().removeObject(this);
+            
         }
     }
 }

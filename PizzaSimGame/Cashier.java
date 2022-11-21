@@ -19,7 +19,7 @@ public class Cashier extends People
     private int ovenXCoord, ovenYCoord, counterXCoord, counterYCoord, cookedOven = 4;
     private int pizzaXOffset = 0, pizzaYOffset = -50;
     private double pizzaXCoord, pizzaYCoord, rotationIndexRadians;
-    private boolean currentlyMovingToOven = false, currentlyMovingPizza = false, atOven = false, atCounter = false;
+    private boolean currentlyMovingToOven = false, currentlyMovingPizza = false, atOven = false, atCounter = false, foundPizza = false;
     private boolean canPickUp, checkedOvenLocation = false;
     private static Oven oven1, oven2, oven3;
     private boolean pizza1IsCooked, pizza2IsCooked, pizza3IsCooked;
@@ -33,6 +33,8 @@ public class Cashier extends People
     GreenfootImage walkLeft[] = new GreenfootImage[9];
     GreenfootImage leftInteract[] = new GreenfootImage[6];
     GreenfootImage rightInteract[] = new GreenfootImage[6];
+    
+    private Pizza assignedPizza;
     
     public Cashier (int counterXCoord, int counterYCoord, int scaleX, int scaleY)
     {
@@ -75,7 +77,7 @@ public class Cashier extends People
             checkedOvenLocation = true;
         }
         
-        if((checkCookedPizza() || currentlyMovingToOven) && !atCounter)
+        if((canPickUpPizza() || currentlyMovingToOven) && !atCounter)
         {
             currentlyMovingToOven = true;
             moveToOven();
@@ -165,8 +167,14 @@ public class Cashier extends People
     
     public void moveToCounter(int counterYCoord)
     {
-        Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
-        pizza.getImage().setTransparency(255);
+        if(!foundPizza)
+        {
+            Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
+            assignPizza(pizza);
+            foundPizza = true;
+        }
+        assignedPizza.getImage().setTransparency(255);
+        assignedPizza.isPickedUp();
         atOven = false; 
         //rotate chef and pizza 
         if(rotationIndex != 180 && timer.millisElapsed() > 200)
@@ -178,16 +186,22 @@ public class Cashier extends People
             pizzaYCoord = getY() - (50 * Math.cos(rotationIndexRadians));
             pizzaXOffset = (int)(50 * Math.sin(rotationIndexRadians));
             pizzaYOffset = (int)(50 * Math.cos(rotationIndexRadians)) * -1;
-            pizza.setLocation(pizzaXCoord, pizzaYCoord);  
+            assignedPizza.setLocation(pizzaXCoord, pizzaYCoord);  
         }
         //move y axis to cashier counter
         if(getY() != counterYCoord && rotationIndex == 180)
         {
             setLocation(getX(), getY() + 1);
             pizzaYCoord += 1;   
-            pizza.setLocation(pizzaXCoord, pizzaYCoord);
+            assignedPizza.setLocation(pizzaXCoord, pizzaYCoord);
         }
-        if(getY() == counterYCoord)
+        if(assignedPizza.getY() != Utils.pizzaFinalY && getY() == counterYCoord)
+        {
+            pizzaYCoord += 1;
+            pizzaYOffset += 1;
+            assignedPizza.setLocation(pizzaXCoord, pizzaYCoord); 
+        }
+        if(assignedPizza.getY() == Utils.pizzaFinalY)
         {
             currentlyMovingPizza = false;
             atCounter = true;
@@ -195,7 +209,6 @@ public class Cashier extends People
             pizzaYOffset = -50;
         }
     }
-    
     public void moveToCashierCounter(int counterXCoord, int counterYCoord)
     {
         //rotate chef and pizza 
@@ -216,80 +229,56 @@ public class Cashier extends People
             if(cookedOven == 1)
             {
                 oven1.pickUpReserve(false);
+                pizza1IsCooked = false;
             }
             if(cookedOven == 2)
             {
-                oven1.pickUpReserve(false);
+                oven2.pickUpReserve(false);
+                pizza2IsCooked = false;
             }
             if(cookedOven == 3)
             {
-                oven1.pickUpReserve(false);
+                oven3.pickUpReserve(false);
+                pizza3IsCooked = false;
             }
             cookedOven = 4;
             atCounter = false;
+            foundPizza = false;
         }
     }
     
-    public boolean checkCookedPizza()
+    public boolean canPickUpPizza()
     {
-        if(!oven1.checkIfEmpty())
+        if(getX() == counterXCoord && getY() == counterYCoord)
         {
-            Pizza pizza = (Pizza)getWorld().getObjectsAt(Utils.oven1X, Utils.ovenY, Pizza.class).get(0);
-            if(pizza.isCooked())
-            {
-                pizza1IsCooked = true;
-                return true;
-            }
-            pizza1IsCooked = false;
-            return false;
+            return true;
         }
-        else if(!oven2.checkIfEmpty())
-        {
-            Pizza pizza = (Pizza)getWorld().getObjectsAt(Utils.oven2X, Utils.ovenY, Pizza.class).get(0);
-            if(pizza.isCooked())
-            {
-                pizza2IsCooked = true;
-                return true;
-            }
-            pizza2IsCooked = false;
-            return false;
-        }
-        else if(!oven3.checkIfEmpty())
-        {
-            Pizza pizza = (Pizza)getWorld().getObjectsAt(Utils.oven3X, Utils.ovenY, Pizza.class).get(0);
-            if(pizza.isCooked())
-            {
-                pizza3IsCooked = true;
-                return true;
-            }
-            pizza3IsCooked = false;
-            return false;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
+    }
+    
+    public void assignPizza(Pizza pizza)
+    {
+        assignedPizza = pizza;
     }
     
     public void checkCookedOven()
     {
         //checks for empty oven and reserves it
-        checkCookedPizza();
-        if(pizza1IsCooked && !oven1.isPickUpReserved())
+        if(oven1.canPickUp() && !oven1.isPickUpReserved())
         {
             oven1.pickUpReserve(true);
             cookedOven = 1;
             ovenXCoord = oven1.getX();
             ovenYCoord = oven1.getY();
         }
-        else if(pizza2IsCooked && !oven2.isPickUpReserved())
+        else if(oven2.canPickUp() && !oven2.isPickUpReserved())
         {
             oven2.pickUpReserve(true);
             cookedOven = 2;
             ovenXCoord = oven2.getX();
             ovenYCoord = oven2.getY();
         }
-        else if(pizza3IsCooked && !oven3.isPickUpReserved())
+        else if(oven3.canPickUp() && !oven3.isPickUpReserved())
         {
             oven3.pickUpReserve(true);
             cookedOven = 3;

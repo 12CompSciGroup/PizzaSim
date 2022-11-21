@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class StartWorld here.
  * 
- * @author (your name) 
+ * @author Yixin Cai
  * @version (a version number or a date)
  */
 public class StartWorld extends World
@@ -33,10 +33,10 @@ public class StartWorld extends World
     }
     
     public void started() {
-        BackgroundSound.getInstance().playSound();
+        Utils.backgroundSound.playLoop();
     }
     
     public void stopped() {
-        BackgroundSound.getInstance().pauseSound();
+        Utils.backgroundSound.pause();
     }
 }

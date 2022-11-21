@@ -29,6 +29,20 @@ public class Oven extends Target
         return isEmpty;
     }
     
+    public boolean canPickUp()
+    {
+        if(!checkIfEmpty())
+        {
+            Pizza pizza = (Pizza) getOneObjectAtOffset(0, 0, Pizza.class);
+            if(pizza.isCooked())
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
     public void pickUpReserve(boolean reservation)
     {
         isPickUpReserved = reservation;

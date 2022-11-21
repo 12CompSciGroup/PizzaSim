@@ -3,22 +3,43 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Button here.
  * 
- * @author (your name) 
+ * @author Yixin Cai
  * @version (a version number or a date)
  */
-public abstract class Button extends Actor implements ISoundCentre
-{
+public abstract class Button extends Actor implements ISound
+{   
     protected GreenfootImage image;
     protected GreenfootImage downImage;
-    protected GreenfootSound sound;
-    protected boolean isImageDown;
+    protected GreenfootImage hoverImage;
+
+    private static GreenfootSound[] sounds = {
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav"),
+        new GreenfootSound("click.wav")
+    };
+    private int soundNum;
+    private int soundIndex;
+    private int downTik;
+    private boolean isHovered;
     
-    public Button(GreenfootImage image, GreenfootImage downImage) {
-        this.image = image;
-        this.downImage = downImage;
-        this.sound = new GreenfootSound("click.wav");
-        isImageDown = false;
-        setImage(image);
+    public Button() {
+        this.downTik = 0;
+        this.soundNum = sounds.length;
+        this.soundIndex = 0;
+        this.isHovered = false;
+    }
+    
+    public void addedToWorld(World w) {
+        for (GreenfootSound sound : sounds) {
+            sound.setVolume(Utils.volume);
+        }
     }
     
     /**
@@ -27,45 +48,55 @@ public abstract class Button extends Actor implements ISoundCentre
      */
     public void act()
     {
-        //if(Greenfoot.mouseClicked(this)) {
-        //    onClick();
-        //    playSound();
-        //}
-        //onHover();
-        
         if (Greenfoot.mouseClicked(this)) {
-            setImage(downImage);
-            isImageDown = true;
+            downTik = 5;
             onClick();
             playSound();
         }
-        // this boolean is to help reduce number of setImage calls
-        // thus can increase efficiency.
-        else if (isImageDown){
+        else if (Greenfoot.mouseMoved(this)) {
+            isHovered = true;
+        }
+        else if (Greenfoot.mouseMoved(null)) {
+            isHovered = false;
+        }
+        
+        if (downTik > 0) {
+            setImage(downImage);
+            downTik--;
+        }
+        else if (isHovered) {
+            setImage(hoverImage);
+        }
+        else {
             setImage(image);
-            isImageDown = false;
         }
     }
     
     protected abstract void onClick();
-    //protected abstract void onHover();
     
     /**
      * Start playing sound if there is sound
      */
     public void playSound() {
-        if (sound != null) {
-            sound.play();
+        soundIndex++;
+        if (soundIndex > (sounds.length - 1)) {
+            soundIndex = 0;
         }
+        sounds[soundIndex].play();
     }
     
     /**
      * Pause playing sound if there is sound
      */
     public void pauseSound() {
-        if (sound != null) {
-            sound.pause();
-        }
+        sounds[soundIndex].pause();
+    }
+    public boolean isSoundPlaying () {
+        return sounds[soundIndex].isPlaying();
+    }
+    
+    public GreenfootSound getSound (){
+        return sounds[soundIndex];
     }
     
     /**
@@ -73,7 +104,7 @@ public abstract class Button extends Actor implements ISoundCentre
      * @param volume The current volume
      */
     public void setVolume(int volume) {
-        if (sound != null) {
+        for (GreenfootSound sound : sounds) {
             sound.setVolume(volume);
         }
     }

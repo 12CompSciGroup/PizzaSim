@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Oven
+comment0.text=\n\ Write\ a\ description\ of\ class\ Oven\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Oven()
+comment2.params=
+comment2.target=boolean\ checkIfEmpty()
+comment3.params=
+comment3.target=boolean\ canPickUp()
+comment4.params=reservation
+comment4.target=void\ pickUpReserve(boolean)
+comment5.params=reservation
+comment5.target=void\ reserve(boolean)
+comment6.params=
+comment6.target=boolean\ isReserved()
+comment7.params=
+comment7.target=boolean\ isPickUpReserved()
+numComments=8

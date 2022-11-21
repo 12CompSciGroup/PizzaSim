@@ -16,6 +16,13 @@ public class Label extends Actor {
     /**
      * Constructors of Label
      */
+    public Label() {
+        this("");
+    }
+    
+    /**
+     * Constructors of Label
+     */
     public Label(int labelText) {
         this(labelText + "");
     }
@@ -24,7 +31,7 @@ public class Label extends Actor {
      * Constructors of Label
      */
     public Label(String labelText) {
-        this(labelText, 40);
+        this(labelText, 25);
     }
     
     /**
