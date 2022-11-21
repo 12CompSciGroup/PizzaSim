@@ -15,7 +15,7 @@ public class Robber extends People
     private GreenfootImage robberf = new GreenfootImage("robberf.png");
     private GreenfootImage robberb = new GreenfootImage("robberb.png");
     private GreenfootImage robberl = new GreenfootImage("robberl.png");
-    
+    private GreenfootImage robberr;
     
     /**
      * Act - do whatever the Robber wants to do. This method is called whenever
@@ -25,6 +25,8 @@ public class Robber extends People
     {
         this.resturant = resturant;
         setImage(robberf);
+        robberr = new GreenfootImage(robberl);
+        robberr.mirrorHorizontally();
     }
 
     public void act()
@@ -41,7 +43,7 @@ public class Robber extends People
         {
             exit();
             checkPosition();
-            if(position = true)
+            if(position == true)
             {
                 leave();
             }
@@ -118,8 +120,7 @@ public class Robber extends People
         {
             if(getX() != 610)
             {
-                setImage(robberl);
-                getImage().mirrorHorizontally();
+                setImage(robberr);
                 setLocation(getX()+1,getY());
             }
         }
@@ -161,8 +162,7 @@ public class Robber extends People
             
                 if(getX() != 500)
                 {
-                    setImage(robberl);
-                    getImage().mirrorHorizontally();
+                    setImage(robberr);
                     setLocation(getX()+1,getY());
                 }
             
@@ -199,6 +199,7 @@ public class Robber extends People
         {
             position = true;
         }
+        
     }
 
 }
