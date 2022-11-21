@@ -53,6 +53,10 @@ public class MyWorld extends World
         addObject(new WaitingLine(), Utils.wait3X, Utils.counterY);
         addObject(new Robber(1),500,100);
         //addObject(new Pizza(
+        addObject(new Label("Level" ,30),204,40);
+        addObject(new Label("Money", 30),409,40);
+        addObject(new Label("Money", 30),612,40);
+        addObject(new Label("Level", 30),816,40);
         
     }
     
