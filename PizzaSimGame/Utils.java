@@ -13,7 +13,7 @@ public class Utils extends Actor
         getImage().setTransparency(0);
     }
     
-    private int resturantMoneyOne = 0;
+    private int resturantMoneyOne = ((SettingWorld)getWorld()).getMoneyNumMama();
     private int resturantMoneyTwo = 0;
     private int resturantLevelOne = 1;
     private int resturantLevelTwo = 1;
