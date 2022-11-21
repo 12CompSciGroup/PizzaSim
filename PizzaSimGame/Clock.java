@@ -6,15 +6,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Yuxin Li) 
  * @version (a version number or a date)
  */
-public class Clock extends Actor implements ISound
+public class Clock extends Actor
 {
     /**
      * Act - do whatever the clock wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private GreenfootSound tikSound = new GreenfootSound("tik.wav");
-    private GreenfootSound alarmSound = new GreenfootSound("alarm.wav");
-    private GreenfootSound sound;
     private int time;
     private static GreenfootImage[] clocks={
         new GreenfootImage("clock_1.png"), 
@@ -41,18 +38,10 @@ public class Clock extends Actor implements ISound
         this.time=time;
         imageIndex=0;
         timeIndex=time/12;
-        burnTime=450;
+        burnTime=90;
         burnAct=0;
         this.pizza=pizza;
-        sound = tikSound;
     }
-    
-    public void addedToWorld(World w) {
-        tikSound.setVolume(Utils.volume);
-        alarmSound.setVolume(Utils.volume);
-        playSound();
-    }
-    
     /**
      * countdown act
      */
@@ -69,7 +58,7 @@ public class Clock extends Actor implements ISound
         }
         else if(imageIndex==12){
             burnTime--;
-            clockAlarm();
+            clock_Alarm();
             if(burnTime==0){
                 pizza.burnPizza();
                 //smoke flowing
@@ -85,7 +74,7 @@ public class Clock extends Actor implements ISound
     /**
      * When the countdown is finished, the clock will shake and alarm 
      */
-    public void clockAlarm(){
+    public void clock_Alarm(){
         burnAct++;
         if(burnAct==1){
             setLocation(x-5, y);
@@ -97,51 +86,12 @@ public class Clock extends Actor implements ISound
             setLocation(x+5, y);
             burnAct=0;
         }
-        switchSound();
     }
-    // when the pizza is picked up by the cashier
+    // when the pizza is picked up by the chef
     // remove clock
     public void removeClock(){
-        if(this.pizza.isInOven()==false){
+        if(this.pizza.isPickedUp()){
             getWorld().removeObject(this);
-            sound.stop();
         }
-    }
-    
-    private void switchSound() {
-        sound.stop();
-        sound = alarmSound;
-        playSound();
-    }
-    
-    /**
-     * Start playing sound if there is sound
-     */
-    public void playSound() {
-        sound.playLoop();
-    }
-    
-    /**
-     * Pause playing sound if there is sound
-     */
-    public void pauseSound() {
-        sound.pause();
-    }
-    
-    public boolean isSoundPlaying () {
-        return sound.isPlaying();
-    }
-    
-    public GreenfootSound getSound (){
-        return sound;
-    }
-    
-    /**
-     * Update volume of the sounds
-     * @param volume The current volume
-     */
-    public void setVolume(int volume) {
-        tikSound.setVolume(volume);
-        alarmSound.setVolume(volume);
     }
 }

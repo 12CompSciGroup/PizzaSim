@@ -3,10 +3,10 @@ import java.util.ArrayList;
 /**
  * Write a description of class Pizza here.
  * 
- * @Yuxin Li (your name) 
+ * @Yuxin Li (Yuxin Li) 
  * @version (a version number or a date)
  * 
- */
+ */ 
 public class Pizza extends Actor
 {
     /**
@@ -21,15 +21,12 @@ public class Pizza extends Actor
     private String sauce;
     private boolean burn = false;
     private boolean doughFinished = false, toppingsFinished = false, sauceFinished = false;
-    private boolean firstStage_finished;
     private boolean cooked = false;
     private Cashier cashier;
-    private Customer customer;
     private int chef_Xoffset = 50, chef_Yoffset = 0;
     private boolean inOven;
-    private int cookTime, price;
-    private int toppingTime=60;
     
+    private SimpleTimer timer = new SimpleTimer();
 
     
     private GreenfootImage pizza = new GreenfootImage("pizzaBase.png");
@@ -43,14 +40,10 @@ public class Pizza extends Actor
         new GreenfootImage("dough5.png"),
     };
     */
-    private GreenfootImage theSauce;
-    private static GreenfootImage crust=new GreenfootImage("cooked.png");
-    private static GreenfootImage burned=new GreenfootImage("burned.png");
+
     private int imageIndex = 0, toppingIndex = 0;
     private int changeTime = 0;
     private boolean hasCashier = false, hasChef = false;
-    private boolean atCashierCounter = false, paid=false;
-
     
     private double exactX;
     private double exactY;
@@ -58,47 +51,25 @@ public class Pizza extends Actor
     /**
      * initialize a pizza that correspond to a customer's order after 
      * a customer comes in the store and orders
-     */
-    public Pizza(String[] strings, String sauce, Customer theCustomer){
+    */
+    public Pizza(String[] strings, String sauce){
         toppings = strings;
         this.sauce = sauce;
-        customer = theCustomer;
-        atCashierCounter = false;
-        cookTime=540;
-        firstStage_finished=false;
-        doughFinished=false;
-        imageIndex=0;
-        burn=false;
     }
     
-    public void act(){
+    public void act()
+    {
         if(!doughFinished)
         {
             spreadDough();
         }
         if(doughFinished && !sauceFinished)
         {
-            toppingTime--;
             addSauce(sauce);
         }
         if(doughFinished && sauceFinished && !toppingsFinished)
         {
-            toppingTime--;
             addToppings(toppings);
-
-        }
-        if(atCashierCounter&&paid==false){
-            //Money_displayer money_displayer=(Money_displayer)getWorld().getObjectsAt(200, 40, Money_displayer.class).get(0);
-            //money_displayer.setDisplayer(money_displayer.getMoney()+price);
-            //paid=true;
-        }
-        moveMe();
-    }
-
-    public void moveMe(){
-        if(atCashierCounter){
-            customer.setPickedUp();
-            setLocation(customer.getX(), customer.getY());
         }
     }
     
@@ -106,7 +77,6 @@ public class Pizza extends Actor
      * an animation of the dough spreading process
      */
     public void spreadDough(){
-        pizza.scale(50,50);
         setImage(pizza);
         doughFinished = true;
         /*
@@ -124,86 +94,61 @@ public class Pizza extends Actor
         changeTime--;
         */
     }
-
-    //public void addToppings(String sauce, String[] strings){
-        //theSauce=new GreenfootImage("sauce"+sauce+".png");
-        //getImage().drawImage(theSauce, 0, 0);
-        //for(int i=0; i<toppings.length; i++){
-            //GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
-            //getImage().drawImage(topping, 0, 0);
-        //}
-    //}
-    /**
-     * add the sauce
-     */
+    
     public void addSauce(String sauce)
     {
-        if(toppingTime==0)
+        if(timer.millisElapsed() > 1000)
         {
+            timer.mark();
             imageSauce = new GreenfootImage("sauce" + sauce + ".png");
-            imageSauce.scale(50,50);
             getImage().drawImage(imageSauce, 0 , 0);
             sauceFinished = true;
-            toppingTime=60;
         }
     }
-    /**
-     * add one new topping every 60 acts
-     */
+    
     public void addToppings(String[] strings){
-        if(toppingIndex < strings.length && toppingTime==0){
-            GreenfootImage topping = new GreenfootImage(toppings[toppingIndex] + ".png");
-            topping.scale(50,50);
-            getImage().drawImage(topping, 0, 0);
-            toppingIndex++;
-            toppingTime=60;
-        }
-        if(toppingIndex == strings.length)
+        //calculate total cooktime
+        //placeholders
+        if(timer.millisElapsed() > 1000)
         {
-            toppingsFinished = true;
+            timer.mark();
+            for(int i=0; i<toppings.length; i++){
+                GreenfootImage topping = new GreenfootImage(toppings[i] + ".png");
+                getImage().drawImage(topping, 0, 0);
+                toppingIndex++;
+            }
+            if(toppingIndex == toppings.length)
+            {
+                toppingsFinished = true;
+            }
         }
     }
     /**
-     * get the cook time required for the pizza
-     */
-    public int getCookTime(){
+     * calculate the cook time required for the pizza
+    */
+    public int getCookTime(String[] strings){
         //return cooktime
         //add the time for all toppings
-        return cookTime;
+        return 300;
     }
     /**
      * if the pizza is cooked and a cashier comes, return has cashier
      * if hasCashier, the clocked will be removed
      */
-    public void isPickedUp(){
+    public boolean isPickedUp(){
         //if the pizza is in oven and the pizza is cooked
         //find the chef picking up the pizza
-        inOven = false;
-
+        if(cooked && inOven == true && hasChef == false){
+            ArrayList<Cashier> cashierNear = (ArrayList<Cashier>)getObjectsInRange(50, Cashier.class);
+            cashier = cashierNear.get(0);
+            hasCashier = true;
+            inOven = false;
+        }
+        return hasCashier;
     }
     
-    /**
-     * check if the pizza is in oven
-     */
-    public boolean isInOven(){
-        return inOven;
-    }
-    
-    /**
-     * if the chef put the pizza in oven, initialize a clock 
-     */
     public void goInOven(){
-
-        //set transparency to 0 
-        //getImage().setTransparency(0);
-        //start timer
-        //getWorld.addObject(new Timer(cookTime), ovenX, ovenY);
-        //set the oven filled 
-        //find the position of the oven(oven1 oven2 oven3)
-        
-        getWorld().addObject(new Clock(cookTime, this), getX(), getY()-50);
         inOven = true;
-
     }
     
     /**
@@ -220,45 +165,27 @@ public class Pizza extends Actor
     }
     
     /**
-     * return if the pizza is burned
+     * check if the pizza is burned
      */
-    public boolean getBurn(){
+    public boolean isBurned(){
         return burn;
     }
     
     /**
-     * return if the pizza is cooked
+     * check if the pizza is cooked 
      */
-    public boolean getCooked(){
-        return cooked;
-    }
     public boolean isCooked(){
         return cooked;
     }
     
-    public void setAtCashierCounter(){
-        atCashierCounter=true;
-    }
-    
-    public boolean isAtCashierCounter(){
-        return atCashierCounter;
-    }
-
     public void burnPizza(){
         //add a dark layer on the pizza
         //drawImage
-        burned.scale(50,50);
-        burned.setTransparency(100);
-        getImage().drawImage(burned,0,0);
         burn=true;
     }
     
     public void cookPizza(){
         //add a golden crust layer on pizza
-        crust.scale(50,50);
-        crust.setTransparency(90);
-
-        getImage().drawImage(crust,0,0);
         cooked=true;
     }
     

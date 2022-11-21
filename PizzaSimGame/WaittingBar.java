@@ -4,28 +4,21 @@ import java.util.ArrayList;
 /**
  * Write a description of class WaittingBar here.
  * 
- * @author Yixin Cai 
+ * @author Yixin 
  * @version (a version number or a date)
  */
 public class WaittingBar extends Actor
 {
-    private GifImage[] moodBarGif = {
-        new GifImage ("mood0.gif"),
-        new GifImage ("mood1.gif"),
-        new GifImage ("mood2.gif"),
-        new GifImage ("mood3.gif"),
-        new GifImage ("mood4.gif"),
-        new GifImage ("mood5.gif")
+    private GifImage[] MOOD_GIF_IMAGES = {
+        new GifImage ("1happy.gif"),
+        new GifImage ("2annoyed.gif"),
+        new GifImage ("3frustrated.gif"),
+        new GifImage ("4crying.gif"),
+        new GifImage ("5mad.gif"),
+        new GifImage ("6angry.gif")
     };
     
-    private final int WAIT_DELAY = 420;
-    private final int ROUND_COUNT = WAIT_DELAY / moodBarGif.length;
-    
-    private int tik;
-    
-    public WaittingBar() {
-        tik = 0;
-    }
+    private final int WAIT_DELAY = 300;
     
     /**
      * Act - do whatever the WaittingBar wants to do. This method is called whenever
@@ -33,11 +26,6 @@ public class WaittingBar extends Actor
      */
     public void act()
     {
-        setImage(moodBarGif[tik / ROUND_COUNT].getCurrentImage());
-        tik++;
         
-        if (tik > 420) {
-            getWorld().removeObject(this);
-        }
     }
 }

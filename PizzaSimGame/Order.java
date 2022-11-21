@@ -19,22 +19,18 @@ public class Order extends Actor
     private String sauce;
     private GreenfootImage chatBox = getImage();
     private GreenfootImage topping, theSauce, dough;
-    private Customer customer;
     private boolean madePizza = false;
     private static KitchenCounter kitchen1, kitchen2;
-    private int price=5;
-    public Order(String sauceType, String[] toppingTypes, Customer theCustomer){
+    
+    public Order(String sauceType, String[] toppingTypes){
         toppings = toppingTypes;
         sauce = sauceType;
-        customer=theCustomer;
         dough = new GreenfootImage("pizzaBase.png");
+        chatBox.scale(60, 70);
         chatBox.drawImage(dough, 12, 5);
         
     }
-    public void act(){
-        moveMe();
-        
-    }
+
     /**
      * draw the order picture above the head of each customer
      */
@@ -52,58 +48,17 @@ public class Order extends Actor
         kitchen2 = (KitchenCounter)getWorld().getObjectsAt(Utils.kitchenCounterX, Utils.kitchenCounterY2, KitchenCounter.class).get(0);
         if(kitchen1.checkCanMakePizza())
         {
-            Pizza pizza=new Pizza(toppings, sauce, customer);
-            customer.setPizza(pizza);
-            getWorld().addObject(pizza, Utils.kitchenCounterX, Utils.kitchenCounterY1);
+            getWorld().addObject(new Pizza(toppings, sauce), Utils.kitchenCounterX, Utils.kitchenCounterY1);
         }
         else if(kitchen2.checkCanMakePizza())
         {
-            Pizza pizza=new Pizza(toppings, sauce, customer);
-            customer.setPizza(pizza);
-            getWorld().addObject(pizza, Utils.kitchenCounterX, Utils.kitchenCounterY2);
+            getWorld().addObject(new Pizza(toppings, sauce), Utils.kitchenCounterX, Utils.kitchenCounterY2);
         }
         
     }
     
     public void addedToWorld(World w){
         drawOrder();
-        calculatePrice(sauce, toppings);
-        MoneyDisplayer money_displayer=(MoneyDisplayer)getWorld().getObjectsAt(150, 40, MoneyDisplayer.class).get(0);
-        money_displayer.setDisplayer(money_displayer.getMoney()+price);
         makePizza();
     }
-    
-    public int calculatePrice(String order, String[] toppingTypes){
-        if(order=="bbq"){
-            price+=2;
-        }
-        if(order=="tomato"){
-            price+=1;
-        }
-        for(int i=0; i<toppingTypes.length; i++){
-            if(toppingTypes[i]=="cheese"){
-                price+=2;
-            }
-            if(toppingTypes[i]=="ham"){
-                price+=3;
-            }
-            if(toppingTypes[i]=="olives"){
-                price+=2;
-            }
-            if(toppingTypes[i]=="pepperoni"){
-                price+=1;
-            }
-            if(toppingTypes[i]=="peppers"){
-                price+=2;
-            }
-        }
-        return price;
-    }
-    /**
-     * move the order with the customer
-     */
-    public void moveMe(){
-        setLocation(customer.getX(), customer.getY()-(customer.getImage()).getHeight()/2-20);
-    }
-    
 }

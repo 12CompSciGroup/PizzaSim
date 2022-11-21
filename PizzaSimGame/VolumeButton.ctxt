@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=VolumeButton
-comment0.text=\n\ Write\ a\ description\ of\ class\ VolumeButton\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
-comment1.params=isUp
-comment1.target=VolumeButton(boolean)
-comment2.params=
-comment2.target=void\ onClick()
-numComments=3
