@@ -10,6 +10,13 @@ public class Robber extends People
 {
     private int resturant;
     private int location;
+    private boolean stolen = false;
+    private boolean position = false;
+    private GreenfootImage robberf = new GreenfootImage("robberf.png");
+    private GreenfootImage robberb = new GreenfootImage("robberb.png");
+    private GreenfootImage robberl = new GreenfootImage("robberl.png");
+    
+    
     /**
      * Act - do whatever the Robber wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,21 +24,28 @@ public class Robber extends People
     public Robber(int resturant)
     {
         this.resturant = resturant;
-
+        setImage(robberf);
     }
 
     public void act()
     {
-        if((getX() == 400 || getX() == 610)&&getY() == 630)
-        {
-            System.out.println("exit once");
-            exit();
-            leave();
-        }
+
         // Add your action code here.
-        moveToDoorAndMoney();
-        stealMoney();
-        
+        if(stolen == false)
+        {
+            moveToDoorAndMoney();
+            stealMoney();
+            checkStolen();
+        }
+        if(stolen == true)
+        {
+            exit();
+            checkPosition();
+            if(position = true)
+            {
+                leave();
+            }
+        }
     }
 
     public void moveToDoorAndMoney()
@@ -59,7 +73,7 @@ public class Robber extends People
             if(getX()==400&&getY()==630)
             {
                 Utils.resturantMoneyOne--;
-                getWorld().removeObject(this);
+                
             }
         }
         if(resturant ==2)
@@ -68,7 +82,7 @@ public class Robber extends People
             if(getX()==610&&getY()==630)
             {
                 Utils.resturantMoneyTwo--;
-                getWorld().removeObject(this);
+                
             }
         }
     }
@@ -104,6 +118,8 @@ public class Robber extends People
         {
             if(getX() != 610)
             {
+                setImage(robberl);
+                getImage().mirrorHorizontally();
                 setLocation(getX()+1,getY());
             }
         }
@@ -111,6 +127,7 @@ public class Robber extends People
         {
             if(getX() != 400)
             {
+                setImage(robberl);
                 setLocation(getX()-1,getY());
             }
         }
@@ -120,6 +137,7 @@ public class Robber extends People
     {
         if(getY() != 630)
         {
+            setImage(robberb);
             setLocation(getX(),getY()-1);
         }
     }
@@ -128,23 +146,26 @@ public class Robber extends People
     {
         if(resturant == 1)
         {
-            if(getX() == 610 )
-            {
+           
+            
                 if(getX() != 500)
                 {
+                    setImage(robberl);
                     setLocation(getX()-1, getY());
                 }
-            }
+            
         }
         if(resturant == 2)
         {
-            if(getX() == 400)
-            {
+            
+            
                 if(getX() != 500)
                 {
+                    setImage(robberl);
+                    getImage().mirrorHorizontally();
                     setLocation(getX()+1,getY());
                 }
-            }
+            
         }
 
     }
@@ -153,11 +174,30 @@ public class Robber extends People
     {
         if(getY() != 800)
         {
+            setImage(robberf);
             setLocation(getX(),getY()+1);
         }
         if(getY() == 800)
         {
+            setImage(robberf);
             getWorld().removeObject(this);
+        }
+    }
+
+    public void checkStolen()
+    {
+        if((getX() == 400 || getX() == 610)&&getY() == 630)
+        {
+
+            stolen = true;
+        }
+
+    }
+    public void checkPosition()
+    {
+        if(getX() == 500 && getY() == 630)
+        {
+            position = true;
         }
     }
 
