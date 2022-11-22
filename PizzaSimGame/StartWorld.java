@@ -1,17 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
 
 /**
  * Write a description of class StartWorld here.
  * 
- * @author Yixin Cai & Gloria Chan
+ * @author (your name) 
  * @version (a version number or a date)
  */
 public class StartWorld extends World
 {
     // initialize variables
-    private FlashingText text;
-    private GreenfootImage image;
+    private Label startLabel;
     
     /**
      * Constructor for objects of class StartWorld.
@@ -20,30 +18,25 @@ public class StartWorld extends World
     {   
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
-        text = new FlashingText(new GreenfootImage ("enterToPlay.png")); //This creates a blinking "press enter to continue" text.
-        image = new GreenfootImage ("StartScreen.png");
-        Utils.volume = 80;
-        Utils.backgroundSound.setVolume(Utils.volume);
-        ArrayList<ISound> sounds = (ArrayList<ISound>) getObjects(ISound.class);
-        for (ISound sound : sounds) {
-            sound.setVolume(Utils.volume);
-        }
-        Utils.backgroundSound.setVolume(Utils.volume);
+        startLabel = new Label("Press Enter to Start", 75, Color.BLACK);
+        
+        GreenfootImage image = new GreenfootImage ("StartScreen.png");
+        
         setBackground(image);
-        addObject(text,500,450);
+        addObject(startLabel, getWidth() / 2, getHeight() - 50);
     }
     
     public void act() {
        if (Greenfoot.isKeyDown("Enter")) {
-           Greenfoot.setWorld(new StoryWorld());
+           Greenfoot.setWorld(new SettingWorld());
        }
     }
     
     public void started() {
-        Utils.backgroundSound.playLoop();
+        BackgroundSound.getInstance().playSound();
     }
     
     public void stopped() {
-        Utils.backgroundSound.pause();
+        BackgroundSound.getInstance().pauseSound();
     }
 }
