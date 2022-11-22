@@ -9,28 +9,32 @@ import java.lang.Math.*;
  */
 public class Chef extends People
 {
-    private int rotationIndex = 270, imageIndex = 0;
+    private int rotationIndex, startRotationIndex, pizzaria;
     private int ovenXCoord, ovenYCoord, counterXCoord, counterYCoord, openOven = 4;
-    private int pizzaXOffset = -50, pizzaYOffset = 0;
-    private double pizzaXCoord, pizzaYCoord, rotationIndexRadians;
-    private boolean currentlyMovingPizza = false;
+    private int pizzaXOffset, pizzaYOffset = 0;
+    private double pizzaXCoord, pizzaYCoord;
+    private boolean currentlyMovingPizza = false, foundPizza = false, moving;
     private boolean canPickUp, checkedOvenLocation = false;
-    private static Oven oven1, oven2, oven3;
+    private Oven oven1, oven2, oven3;
     
     private SimpleTimer timer = new SimpleTimer();
-    private SimpleTimer animationTimer = new SimpleTimer();
     
     GreenfootImage walkUp[] = new GreenfootImage[9];
     GreenfootImage walkDown[] = new GreenfootImage[9];
     GreenfootImage walkRight[] = new GreenfootImage[9];
     GreenfootImage walkLeft[] = new GreenfootImage[9];
+    GreenfootImage upInteract[] = new GreenfootImage[6];
     GreenfootImage leftInteract[] = new GreenfootImage[6];
-    GreenfootImage rightInteract[] = new GreenfootImage[6];
     
-    public Chef(int counterXCoord, int counterYCoord, int scaleX, int scaleY)
+    private Pizza assignedPizza;
+    
+    public Chef(int counterYCoord, int scaleX, int scaleY, int pizzaria)
     {
-        this.counterXCoord = counterXCoord;
         this.counterYCoord = counterYCoord;
+        this.pizzaria = pizzaria;
+        
+        pizzaXOffset = 50 * pizzaria;
+        pizzaYOffset = 0;
         
         for(int i = 0; i < walkUp.length; i++)
         {
@@ -43,75 +47,88 @@ public class Chef extends People
             walkLeft[i] = new GreenfootImage("images/Chef Animation/walkLeft" + i + ".png");
             walkLeft[i].scale(scaleX, scaleY);
         }
-        /*
-        for(int i = 0; i < downWalk.length; i++)
+        
+        for(int i = 0; i < upInteract.length; i++)
         {
-            rightIdle[i] = new GreenfootImage("idle" + i + ".png");
-            rightIdle[i].scale(x, y);
-
-            leftIdle[i] = new GreenfootImage("idle" + i + ".png");
-            leftIdle[i].scale(x, y);
-            leftIdle[i].mirrorHorizontally();
+            upInteract[i] = new GreenfootImage("images/Chef Animation/interactUp" + i + ".png");
+            upInteract[i].scale(scaleX, scaleY);
+            leftInteract[i] = new GreenfootImage("images/Chef Animation/interactLeft" + i + ".png");
+            leftInteract[i].scale(scaleX, scaleY);
         }
-        */
-        setImage(walkLeft[0]);
+
+        if(pizzaria == -1)
+        {
+            setImage(walkLeft[0]);
+            rotationIndex = -90;
+            counterXCoord = Utils.chefXLeft;
+            startRotationIndex = -90;
+        }
+        if(pizzaria == 1)
+        {
+            setImage(walkRight[0]);
+            rotationIndex = 90;
+            counterXCoord = Utils.chefXRight;
+            startRotationIndex = 90;
+        }
     }
     
     public void act()
-    {
-        animate();
-        if(!checkedOvenLocation)
-        {
-            oven1 = (Oven)getWorld().getObjectsAt(Utils.oven1X, Utils.ovenY, Oven.class).get(0);
-            oven2 = (Oven)getWorld().getObjectsAt(Utils.oven2X, Utils.ovenY, Oven.class).get(0);
-            oven3 = (Oven)getWorld().getObjectsAt(Utils.oven3X, Utils.ovenY, Oven.class).get(0);
-            checkedOvenLocation = true;
-        }
-        
-        if(!currentlyMovingPizza)
-        {
-            moveToCounter(counterXCoord, counterYCoord);
-        }
-        if(canPickUpPizza() || currentlyMovingPizza)
-        {
-            currentlyMovingPizza = true;
-            moveToOven();
-        }
-    }
-    
-    public void animate()
-    {
-        if(animationTimer.millisElapsed() < 100)
-        {
-            return;
-        }
-        animationTimer.mark();
-        //Changes actor's image depending on conditions to create animation
-        if(rotationIndex == 0)
-        {
-            setImage(walkUp[imageIndex]);
-            imageIndex = (imageIndex + 1) % walkUp.length;
-        }
-        if(rotationIndex == 90)
-        {
-            setImage(walkRight[imageIndex]);
-            imageIndex = (imageIndex + 1) % walkRight.length;
-        }
-        if(rotationIndex == 180)
-        {
-            setImage(walkDown[imageIndex]);
-            imageIndex = (imageIndex + 1) % walkDown.length;
-        }
-        if(rotationIndex == 270) 
-        {
-            setImage(walkLeft[imageIndex]);
-            imageIndex = (imageIndex + 1) % walkLeft.length;
+    {   
+        if (interactCounter > 0){
+            interact(upInteract, leftInteract, rotationIndex);
+        } else {
+            if(getX() != counterXCoord || getY() != counterYCoord)
+            {
+                moving = true;
+            }
+            else
+            {
+                moving = false;
+            }
+            
+            if(pizzaria == -1 && !checkedOvenLocation)
+            {
+                oven1 = (Oven)getWorld().getObjectsAt(Utils.oven1X, Utils.ovenY, Oven.class).get(0);
+                oven2 = (Oven)getWorld().getObjectsAt(Utils.oven2X, Utils.ovenY, Oven.class).get(0);
+                oven3 = (Oven)getWorld().getObjectsAt(Utils.oven3X, Utils.ovenY, Oven.class).get(0);
+                checkedOvenLocation = true;
+            }
+            
+            if(pizzaria == 1 && !checkedOvenLocation)
+            {
+                oven1 = (Oven)getWorld().getObjectsAt(Utils.oven4X, Utils.ovenY, Oven.class).get(0);
+                oven2 = (Oven)getWorld().getObjectsAt(Utils.oven5X, Utils.ovenY, Oven.class).get(0);
+                oven3 = (Oven)getWorld().getObjectsAt(Utils.oven6X, Utils.ovenY, Oven.class).get(0);
+                checkedOvenLocation = true;
+            }
+            
+            if(!currentlyMovingPizza)
+            {
+                moveToCounter(counterXCoord, counterYCoord);
+            }
+            if(canPickUpPizza() || currentlyMovingPizza)
+            {
+                currentlyMovingPizza = true;
+                moveToOven();
+            }
+            
+            if (!moving){
+                standStill(walkUp[0], walkDown[0], walkLeft[0], walkRight[0], rotationIndex);
+            } else {
+                animate(walkUp, walkDown, walkLeft, walkRight, rotationIndex);
+            }   
         }
     }
 
     public void moveToOven()
     {
-        Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
+        if(!foundPizza)
+        {
+            Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
+            assignPizza(pizza);
+            foundPizza = true;
+        }
+        
         if(openOven == 4)
         {
             checkOpenOven();
@@ -119,95 +136,90 @@ public class Chef extends People
         //rotate chef and pizza
         if(openOven != 4)
         {
-            if(rotationIndex != 90 && timer.millisElapsed() > 200)
+            if(rotationIndex != startRotationIndex + (-180 * pizzaria) && timer.millisElapsed() > 200)
             {
                 timer.mark();
-                rotate(90);
-                rotationIndexRadians = Math.toRadians(rotationIndex);
-                pizzaXCoord = getX() + (50 * Math.sin(rotationIndexRadians));
-                pizzaYCoord = getY() - (50 * Math.cos(rotationIndexRadians));
-                pizzaXOffset = (int)(50 * Math.sin(rotationIndexRadians));
-                pizzaYOffset = (int)(50 * Math.cos(rotationIndexRadians)) * -1;
-                pizza.setLocation(pizzaXCoord, pizzaYCoord);  
+                rotate(-90 * pizzaria, assignedPizza, this);
             }
             //move x axis to oven
-            if(getX() != ovenXCoord && rotationIndex == 90)
+            if(getX() != ovenXCoord && rotationIndex == startRotationIndex + (-180 * pizzaria))
             {
-                setLocation(getX() + 1, getY());
-                pizzaXCoord += 1;   
-                pizza.setLocation(pizzaXCoord, pizzaYCoord);
+                setLocation(getX() - (1 * pizzaria), getY());
+                pizzaXCoord -= (1 * pizzaria);   
+                assignedPizza.setLocation(pizzaXCoord, pizzaYCoord);
             }
             //rotate to face oven
             if(getX() == ovenXCoord && rotationIndex != 0)
             {
-                rotate(-90);
-                rotationIndexRadians = Math.toRadians(rotationIndex);
-                pizzaXCoord = getX() + (50 * Math.sin(rotationIndexRadians));
-                pizzaYCoord = getY() - (50 * Math.cos(rotationIndexRadians));
-                pizzaXOffset = (int)(50 * Math.sin(rotationIndexRadians));
-                pizzaYOffset = (int)(50 * Math.cos(rotationIndexRadians)) * -1;
-                pizza.setLocation(pizzaXCoord, pizzaYCoord);
+                rotate(90 * pizzaria, assignedPizza, this);
             }
             //move y axis to oven
-            if(pizza.getY() != ovenYCoord && rotationIndex == 0 && getX() == ovenXCoord)
+            if(assignedPizza.getY() != ovenYCoord && rotationIndex == 0 && getX() == ovenXCoord)
             {
                 setLocation(getX(), getY() - 1);
                 pizzaYCoord -= 1;
-                pizza.setLocation(pizzaXCoord, pizzaYCoord);
+                assignedPizza.setLocation(pizzaXCoord, pizzaYCoord);
             }
             //reset boolean
-            if(pizza.getY() == ovenYCoord && pizza.getX() == ovenXCoord)
+            if(assignedPizza.getY() == ovenYCoord && assignedPizza.getX() == ovenXCoord)
             {
                 currentlyMovingPizza = false;
-                pizza.getImage().setTransparency(0);
-                pizza.cookPizza();
+                assignedPizza.getImage().setTransparency(0);
+                assignedPizza.goInOven();
+                foundPizza = false;
+                interactCounter = 5;
             }
         }
     }
     
     public void moveToCounter(int counterXCoord, int counterYCoord)
     {
-        pizzaXOffset = -50;
+        pizzaXOffset = 50 * pizzaria;
         pizzaYOffset = 0;
-        if(rotationIndex != 180 && timer.millisElapsed() > 200 && getX() != counterYCoord && getY() != counterYCoord)
+        if(rotationIndex != (180 * pizzaria) && timer.millisElapsed() > 200 && getX() != counterYCoord && getY() != counterYCoord)
         {
             timer.mark();
-            rotate(90);
+            rotate(90 * pizzaria);
         }
         //move chef y axis to counter
-        if(getY() != counterYCoord && rotationIndex == 180)
+        if(getY() != counterYCoord && rotationIndex == (180 * pizzaria))
         {
             setLocation(getX(), getY() + 1);
         }
         //rotate chef
-        if(rotationIndex != 270 && getY() == counterYCoord)
+        if(rotationIndex != startRotationIndex && getY() == counterYCoord)
         {
-            rotate(90);
+            rotate(-90 * pizzaria);
         }
         //move chef x axis to counter
-        if(getX() != counterXCoord && rotationIndex == 270 && getY() == counterYCoord)
+        if(getX() != counterXCoord && rotationIndex == startRotationIndex && getY() == counterYCoord)
         {
-            setLocation(getX() - 1, getY());
+            setLocation(getX() + (1 * pizzaria), getY());
             if(openOven == 1)
             {
                 oven1.reserve(false);
             }
             if(openOven == 2)
             {
-                oven1.reserve(false);
+                oven2.reserve(false);
             }
             if(openOven == 3)
             {
-                oven1.reserve(false);
+                oven3.reserve(false);
             }
             openOven = 4;
         }
     }
     
+    public void assignPizza(Pizza pizza)
+    {
+        assignedPizza = pizza;
+    }
+    
     public boolean canPickUpPizza()
     {
         Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);        
-        if(pizza != null)
+        if(pizza != null && getX() == counterXCoord)
         {
             if(pizza.toppingsFinished())
             {
@@ -255,25 +267,68 @@ public class Chef extends People
     {
         //zero degrees starts facing up/north
         rotationIndex += degrees;
-        if(rotationIndex == 360)
+        if(rotationIndex == 360 || rotationIndex == -360)
+        {
+            rotationIndex = 0;
+        }
+        if(rotationIndex == 0)
+        {   
+            setImage(walkUp[0]);
+        }
+        if(rotationIndex == 90 || rotationIndex == -270)
+        {
+            setImage(walkRight[0]);
+        }
+        if(rotationIndex == 180 || rotationIndex == -180)
+        {
+            setImage(walkDown[0]);
+        }
+        if(rotationIndex == 270 || rotationIndex == -90)
+        {
+           setImage(walkLeft[0]);
+        }
+    }
+    
+    public void rotate(int degrees, Pizza pizza, Chef chef)
+    {
+        //zero degrees starts facing up/north
+        rotationIndex += degrees;
+        if(rotationIndex == 360 || rotationIndex == -360)
         {
             rotationIndex = 0;
         }
         if(rotationIndex == 0)
         {
             setImage(walkUp[0]);
+            pizzaXCoord = chef.getX();
+            pizzaYCoord = chef.getY() - 50;
         }
-        if(rotationIndex == 90)
+        if(rotationIndex == 90 || rotationIndex == -270)
         {
             setImage(walkRight[0]);
+            pizzaXCoord = chef.getX() + 50;
+            pizzaYCoord = chef.getY();
         }
-        if(rotationIndex == 180)
+        if(rotationIndex == 180 || rotationIndex == -180)
         {
             setImage(walkDown[0]);
+            pizzaXCoord = chef.getX();
+            pizzaYCoord = chef.getY() + 50;
         }
-        if(rotationIndex == 270)
+        if(rotationIndex == 270 || rotationIndex == -90)
         {
             setImage(walkLeft[0]);
+            pizzaXCoord = chef.getX() - 50;
+            pizzaYCoord = chef.getY();
         }
+        pizza.setLocation(pizzaXCoord, pizzaYCoord);
+    }
+    
+    public boolean getCurrentlyMoving(){
+        return currentlyMovingPizza;
+    }
+    
+    public boolean getMoving(){
+        return moving;
     }
 }

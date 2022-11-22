@@ -9,11 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class KitchenCounter extends Target
 {
     private boolean canMakePizza;
+    private int pizzaria;
     
-    public KitchenCounter()
+    public KitchenCounter(int pizzaria)
     {
         getImage().scale(25, 25);
         getImage().setTransparency(0);
+        this.pizzaria = pizzaria;
     }
     /**
      * Act - do whatever the KitchenCounter wants to do. This method is called whenever
@@ -45,7 +47,7 @@ public class KitchenCounter extends Target
      * check if there is a chef around counter
      */
     public boolean checkCounterChef(){
-        if(!getWorld().getObjectsAt(getX() + 50, getY(), null).isEmpty()){
+        if(!getWorld().getObjectsAt(getX() - (50 * pizzaria), getY(), null).isEmpty()){
             return true;
         }
         else

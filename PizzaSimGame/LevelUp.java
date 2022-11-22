@@ -26,5 +26,17 @@ public class LevelUp extends Actor
         {
             utils.addResturantLevelTwo();
         }
+<<<<<<< HEAD
+=======
+        
+        if((utils.getResturantMoneyOne() > 500))
+        {
+            Greenfoot.setWorld(new EndWorld(0, utils.getResturantLevelOne(), utils.getResturantMoneyOne()));
+        }
+        if((utils.getResturantMoneyTwo() > 500))
+        {
+            Greenfoot.setWorld(new EndWorld(1, utils.getResturantLevelTwo(), utils.getResturantMoneyTwo()));
+        }
+>>>>>>> parent of 79b2e9b (Revert "Merge branch 'other-pizzaeria' into robbersc")
     }
 }

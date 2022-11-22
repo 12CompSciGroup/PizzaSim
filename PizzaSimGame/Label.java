@@ -16,6 +16,13 @@ public class Label extends Actor {
     /**
      * Constructors of Label
      */
+    public Label() {
+        this("");
+    }
+    
+    /**
+     * Constructors of Label
+     */
     public Label(int labelText) {
         this(labelText + "");
     }
@@ -24,7 +31,7 @@ public class Label extends Actor {
      * Constructors of Label
      */
     public Label(String labelText) {
-        this(labelText, 40);
+        this(labelText, 25);
     }
     
     /**
@@ -35,6 +42,13 @@ public class Label extends Actor {
     }
     
     /**
+     * Constructors of Label
+     */
+    public Label(int labelText, int labelSize) {
+        this(labelText + "", labelSize);
+    }
+    
+    /**
      * King Constructors of Label
      */
     public Label(String labelText, int labelSize, Color labelColor) {
@@ -42,6 +56,13 @@ public class Label extends Actor {
         this.labelSize = labelSize;
         this.labelColor = labelColor;
         setLabelImage();
+    }
+    
+    /**
+     * Constructors of Label
+     */
+    public Label(int labelText, int labelSize, Color labelColor) {
+        this(labelText + "", labelSize, labelColor);
     }
     
     /**
