@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Robber
+comment0.text=\n\ Write\ a\ description\ of\ class\ Robber\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Robber()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ Robber\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ checkLocation()
+comment4.params=
+comment4.target=void\ goForMoney()
+comment5.params=
+comment5.target=void\ stealMoney()
+comment6.params=x\ y
+comment6.target=void\ spawnRobber(int,\ int)
+numComments=7

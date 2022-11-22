@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=MoneyInterface
+comment0.text=\n\ Write\ a\ description\ of\ class\ MoneyInterface\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=utils
+comment1.target=MoneyInterface(Utils)
+comment2.params=store\ money
+comment2.target=void\ changeMoney(int,\ int)
+numComments=3
