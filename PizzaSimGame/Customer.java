@@ -20,7 +20,31 @@ public class Customer extends People
     private String gender;
     private GreenfootImage upIMG, downIMG, leftIMG, rightIMG;
     
+<<<<<<< HEAD
     public Customer (int dir) {
+=======
+    GreenfootImage[] walkUp = new GreenfootImage[9];
+    GreenfootImage[] walkDown = new GreenfootImage[9];
+    GreenfootImage[] walkLeft = new GreenfootImage[9];
+    GreenfootImage[] walkRight = new GreenfootImage[9];
+    
+    private int imageIndex = 0;
+    
+    private SimpleTimer animTimer = new SimpleTimer();
+    private SimpleTimer waitTimer = new SimpleTimer();
+    
+    private boolean hasEmotionBar = false;
+    
+    private boolean checkedLocations = false;
+    
+    private Utils utils;
+    
+    private int enterDIR, exitDIR;
+    
+    private boolean isCash2Open = false;
+    
+    public Customer (int dir, int spawnX, boolean mamaCash2, boolean papaCash2) {
+>>>>>>> parent of 2353e15 (initial merge)
         this.dir = dir;
         
         if (dir == -1){
@@ -52,7 +76,30 @@ public class Customer extends People
         rightIMG = new GreenfootImage(gender + "_R.png");
         rightIMG.scale(38, 70);
         
+<<<<<<< HEAD
         for(int i = 0; i < order.length; i++)
+=======
+        //sets animation images and scales them up
+        for(int i = 0; i < 9; i++){
+            walkUp[i] = new GreenfootImage("images/" + gender + "_Animations/Up/" + (i + 1) + ".png");
+            walkUp[i].scale((int)(walkUp[i].getWidth() * 1.5), (int)(walkUp[i].getHeight() * 1.5));
+            walkDown[i] = new GreenfootImage("images/" + gender + "_Animations/Down/" + (i + 1) + ".png");
+            walkDown[i].scale((int)(walkDown[i].getWidth() * 1.5), (int)(walkDown[i].getHeight() * 1.5));
+            walkLeft[i] = new GreenfootImage("images/" + gender + "_Animations/Left/" + (i + 1) + ".png");
+            walkLeft[i].scale((int)(walkLeft[i].getWidth() * 1.5), (int)(walkLeft[i].getHeight() * 1.5));
+            walkRight[i] = new GreenfootImage("images/" + gender + "_Animations/Right/" + (i + 1) + ".png");
+            walkRight[i].scale((int)(walkRight[i].getWidth() * 1.5), (int)(walkRight[i].getHeight() * 1.5));
+        }
+        
+        if (dir == 1){
+            setImage(walkDown[0]);
+        } else {
+            setImage(walkUp[0]);
+        }
+        
+        //randomizes toppings 
+        for(int i = 0; i < toppings.length; i++)
+>>>>>>> parent of 2353e15 (initial merge)
         {
             toppingRNG = Greenfoot.getRandomNumber(3);
             switch (toppingRNG){
@@ -71,16 +118,65 @@ public class Customer extends People
     }
     
     public void act (){
+<<<<<<< HEAD
         setRotation();
         
         if (inStore == false) {
             if (numOfCustomers >= 5 || (ordered == true && pickedUp == true)){
+=======
+        if(waiting){
+            standStill(walkUp[0], walkDown[0], walkLeft[0], walkRight[0], rotation);
+        } else {
+            animate(walkUp, walkDown, walkLeft, walkRight, rotation);
+        }
+        
+        //set locations for cashiers and waitingline
+        if(!checkedLocations){
+            if(store == Utils.MAMA){
+                cash1 = getWorld().getObjectsAt(Utils.cashier1X, Utils.counterY, CashierCounter.class).get(0);
+                cash2 = getWorld().getObjectsAt(Utils.cashier2X, Utils.counterY, CashierCounter.class).get(0);
+        
+                wait1 = getWorld().getObjectsAt(Utils.wait1X, Utils.counterY, WaitingLine.class).get(0);
+                wait2 = getWorld().getObjectsAt(Utils.wait2X, Utils.counterY, WaitingLine.class).get(0);
+                wait3 = getWorld().getObjectsAt(Utils.wait3X, Utils.counterY, WaitingLine.class).get(0);
+            } else {
+                cash1 = getWorld().getObjectsAt(Utils.cashier4X, Utils.counterY, CashierCounter.class).get(0);
+                cash2 = getWorld().getObjectsAt(Utils.cashier3X, Utils.counterY, CashierCounter.class).get(0);
+        
+                wait1 = getWorld().getObjectsAt(Utils.wait6X, Utils.counterY, WaitingLine.class).get(0);
+                wait2 = getWorld().getObjectsAt(Utils.wait5X, Utils.counterY, WaitingLine.class).get(0);
+                wait3 = getWorld().getObjectsAt(Utils.wait4X, Utils.counterY, WaitingLine.class).get(0);
+            }
+            moneyInterface = getWorld().getObjectsAt(0, 0, MoneyInterface.class).get(0);
+            checkedLocations = true;
+        }
+        
+        //moves towards door if havent bought pizza yet, else walks away with pizza
+        //also ignores doors if there are more than 5 customers
+        if (!inStore) {
+            if ((numberOfCustomers1 >= 5 && store == Utils.MAMA) || (numberOfCustomers2 >= 5 && store == Utils.PAPA)){
+>>>>>>> parent of 2353e15 (initial merge)
                 setLocation(getX(), getY() + (Utils.moveSpeed * dir));
                 
                 if (dir == 1){
                     rotation = DOWN;
                 } else if (dir == -1){
                     rotation = UP;
+<<<<<<< HEAD
+=======
+                }
+            } else if(ordered && pickedUp){
+                if (getX() == spawnX){
+                    setLocation(getX(), getY() + (Utils.moveSpeed * dir));
+                
+                    if (dir == 1){
+                        rotation = DOWN;
+                    } else if (dir == -1){
+                        rotation = UP;
+                    }
+                } else {
+                    setLocation(getX() + (Utils.moveSpeed * store * -1), getY());
+>>>>>>> parent of 2353e15 (initial merge)
                 }
             } else {    
                 moveToDoor();
@@ -374,4 +470,24 @@ public class Customer extends People
             getWorld().removeObject(this);
         }
     }
+<<<<<<< HEAD
+=======
+    
+    public boolean getPickedUp(){
+        return pickedUp;
+    }
+    
+    public boolean getInStore(){
+        return inStore;
+    }
+    
+    public int getStore()
+    {
+        return store;
+    }
+    
+    public int getWaitTime(){
+        return waitTimer.millisElapsed();
+    }
+>>>>>>> parent of 2353e15 (initial merge)
 }
