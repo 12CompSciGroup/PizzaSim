@@ -53,7 +53,10 @@ public class Chef extends People
             leftIdle[i].scale(x, y);
             leftIdle[i].mirrorHorizontally();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
         }
         */
         if(pizzaria == -1)

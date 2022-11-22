@@ -13,11 +13,17 @@ public class People extends Actor
     private double rotation;
     private boolean staticRotation = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private int imageIndex = 0;
     
     private SimpleTimer animTimer = new SimpleTimer();
 >>>>>>> parent of 49bbf5a (interactAnim)
+=======
+    private int imageIndex = 0;
+    
+    private SimpleTimer animTimer = new SimpleTimer();
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
     /**
      * Act - do whatever the People wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -117,7 +123,10 @@ public class People extends Actor
         numberOfCustomers2--;
     }
     
+<<<<<<< HEAD
 >>>>>>> parent of 49bbf5a (interactAnim)
+=======
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
     /**
      * Set the location using exact coordinates.
      * 

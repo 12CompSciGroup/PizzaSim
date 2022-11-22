@@ -17,12 +17,12 @@ public class LevelUp extends Actor
     public void act()
     {
         this.utils = getWorld().getObjectsAt(0, 0, Utils.class).get(0);
-        if((utils.getResturantMoneyOne() > 100 && utils.getResturantMoneyOne() < 200 && utils.getResturantLevelOne() < 2) || (utils.getResturantMoneyOne() >  200 && utils.getResturantLevelOne() < 3))
+        if((utils.getResturantMoneyOne() > 100 && utils.getResturantMoneyOne() < 200 && utils.getResturantLevelOne() < 2) || utils.getResturantMoneyOne() > 200)
         {
             utils.addResturantLevelOne();
         }
         
-        if((utils.getResturantMoneyTwo() > 100 && utils.getResturantMoneyTwo() < 200 && utils.getResturantLevelTwo() < 2) || (utils.getResturantMoneyTwo() > 200 && utils.getResturantLevelTwo() < 3))
+        if((utils.getResturantMoneyTwo() > 100 && utils.getResturantMoneyTwo() < 200 && utils.getResturantLevelTwo() < 2) || utils.getResturantMoneyTwo() > 200)
         {
             utils.addResturantLevelTwo();
         }

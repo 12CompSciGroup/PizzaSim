@@ -4,6 +4,7 @@ comment0.text=\n\ Write\ a\ description\ of\ class\ People\ here.\n\ \n\ @author
 comment1.params=
 comment1.target=void\ act()
 <<<<<<< HEAD
+<<<<<<< HEAD
 comment2.params=x\ y
 comment2.target=void\ setLocation(double,\ double)
 comment2.text=\n\ Set\ the\ location\ using\ exact\ coordinates.\n\ \n\ @param\ x\ the\ new\ x\ location\n\ @param\ y\ the\ new\ y\ location\n
@@ -12,6 +13,8 @@ comment3.target=void\ setLocation(int,\ int)
 comment3.text=\n\ Set\ the\ location\ using\ integer\ coordinates.\n\ (Overrides\ the\ method\ in\ Actor.)\ \ \ \ \n\ \n\ @param\ x\ the\ new\ x\ location\n\ @param\ y\ the\ new\ y\ location\n
 numComments=4
 =======
+=======
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
 comment10.params=x\ y
 comment10.target=void\ setLocation(int,\ int)
 comment10.text=\r\n\ Set\ the\ location\ using\ integer\ coordinates.\r\n\ (Overrides\ the\ method\ in\ Actor.)\ \ \ \ \r\n\ \r\n\ @param\ x\ the\ new\ x\ location\r\n\ @param\ y\ the\ new\ y\ location\r\n
@@ -33,4 +36,7 @@ comment9.params=x\ y
 comment9.target=void\ setLocation(double,\ double)
 comment9.text=\r\n\ Set\ the\ location\ using\ exact\ coordinates.\r\n\ \r\n\ @param\ x\ the\ new\ x\ location\r\n\ @param\ y\ the\ new\ y\ location\r\n
 numComments=11
+<<<<<<< HEAD
 >>>>>>> parent of 49bbf5a (interactAnim)
+=======
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)

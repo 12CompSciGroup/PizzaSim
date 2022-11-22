@@ -34,7 +34,17 @@ public class Cashier extends People
     GreenfootImage leftInteract[] = new GreenfootImage[6];
     GreenfootImage rightInteract[] = new GreenfootImage[6];
     
+<<<<<<< HEAD
     public Cashier (int counterXCoord, int counterYCoord, int scaleX, int scaleY)
+=======
+    private Pizza assignedPizza;
+    
+    //andy code
+    private int startX, startY;
+    private boolean atCashier = true;
+    
+    public Cashier (int counterXCoord, int counterYCoord, int scaleX, int scaleY, int pizzaria)
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
     {
         this.counterXCoord = counterXCoord;
         this.counterYCoord = counterYCoord;
@@ -103,6 +113,7 @@ public class Cashier extends People
         //moveToCounter(330, 460);
         //moveToCashierCounter(530, 460);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
     
     public void animate()
@@ -134,6 +145,8 @@ public class Cashier extends People
             imageIndex = (imageIndex + 1) % walkLeft.length;
         }
 =======
+=======
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
         
         if (getX() == counterXCoord && getY() == counterYCoord){
             atCashier = true;
@@ -194,14 +207,20 @@ public class Cashier extends People
             assignPizza(pizza);
             foundPizza = true;
         }
+<<<<<<< HEAD
         getPizza().getImage().setTransparency(255);
         getPizza().isPickedUp();
 >>>>>>> parent of e8578ac (final interaction animation)
+=======
+        assignedPizza.getImage().setTransparency(255);
+        assignedPizza.isPickedUp();
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
         atOven = false; 
         //rotate chef and pizza 
         if(rotationIndex != 180 && timer.millisElapsed() > 200)
         {
             timer.mark();
+<<<<<<< HEAD
             rotate(90);
             rotationIndexRadians = Math.toRadians(rotationIndex);
             pizzaXCoord = getX() + (50 * Math.sin(rotationIndexRadians));
@@ -209,23 +228,33 @@ public class Cashier extends People
             pizzaXOffset = (int)(50 * Math.sin(rotationIndexRadians));
             pizzaYOffset = (int)(50 * Math.cos(rotationIndexRadians)) * -1;
             pizza.setLocation(pizzaXCoord, pizzaYCoord);  
+=======
+            rotate(90, assignedPizza, this);             
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
         }
         //move y axis to cashier counter
         if(getY() != counterYCoord && rotationIndex == 180)
         {
             setLocation(getX(), getY() + 1);
             pizzaYCoord += 1;   
+<<<<<<< HEAD
             pizza.setLocation(pizzaXCoord, pizzaYCoord);
         }
         if(getY() == counterYCoord)
+=======
+            assignedPizza.setLocation(pizzaXCoord, pizzaYCoord);
+        }
+        
+        if(assignedPizza.getY() != Utils.pizzaFinalY && getY() == counterYCoord)
+>>>>>>> parent of df43296 (Finished merge with main/started code abstraction/cleanup)
         {
 <<<<<<< HEAD
 =======
             pizzaYCoord += 1;
-            getPizza().setLocation(pizzaXCoord, pizzaYCoord); 
+            assignedPizza.setLocation(pizzaXCoord, pizzaYCoord); 
         }
         
-        if(getPizza().getY() == Utils.pizzaFinalY)
+        if(assignedPizza.getY() == Utils.pizzaFinalY)
         {
 <<<<<<< HEAD
 >>>>>>> parent of e8578ac (final interaction animation)
@@ -311,6 +340,11 @@ public class Cashier extends People
         {
             return false;
         }
+    }
+    
+    public void assignPizza(Pizza pizza)
+    {
+        assignedPizza = pizza;
     }
     
     public void checkCookedOven()
