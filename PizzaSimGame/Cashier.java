@@ -165,8 +165,19 @@ public class Cashier extends People
     
     public void moveToCounter(int counterYCoord)
     {
+<<<<<<< HEAD
         Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
         pizza.getImage().setTransparency(255);
+=======
+        if(!foundPizza)
+        {
+            Pizza pizza = (Pizza)getOneObjectAtOffset(pizzaXOffset, pizzaYOffset, Pizza.class);
+            assignPizza(pizza);
+            foundPizza = true;
+        }
+        getPizza().getImage().setTransparency(255);
+        getPizza().isPickedUp();
+>>>>>>> parent of e8578ac (final interaction animation)
         atOven = false; 
         //rotate chef and pizza 
         if(rotationIndex != 180 && timer.millisElapsed() > 200)
@@ -189,6 +200,15 @@ public class Cashier extends People
         }
         if(getY() == counterYCoord)
         {
+<<<<<<< HEAD
+=======
+            pizzaYCoord += 1;
+            getPizza().setLocation(pizzaXCoord, pizzaYCoord); 
+        }
+        
+        if(getPizza().getY() == Utils.pizzaFinalY)
+        {
+>>>>>>> parent of e8578ac (final interaction animation)
             currentlyMovingPizza = false;
             atCounter = true;
             pizzaXOffset = 0;

@@ -159,8 +159,14 @@ public class Chef extends People
             if(pizza.getY() == ovenYCoord && pizza.getX() == ovenXCoord)
             {
                 currentlyMovingPizza = false;
+<<<<<<< HEAD
                 pizza.getImage().setTransparency(0);
                 pizza.cookPizza();
+=======
+                assignedPizza.getImage().setTransparency(0);
+                assignedPizza.goInOven();
+                foundPizza = false;
+>>>>>>> parent of e8578ac (final interaction animation)
             }
         }
     }
@@ -275,5 +281,13 @@ public class Chef extends People
         {
             setImage(walkLeft[0]);
         }
+<<<<<<< HEAD
+=======
+        pizza.setLocation(pizzaXCoord, pizzaYCoord);
+    }
+    
+    public boolean getCurrentlyMoving(){
+        return currentlyMovingPizza;
+>>>>>>> parent of e8578ac (final interaction animation)
     }
 }

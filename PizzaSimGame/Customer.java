@@ -175,7 +175,54 @@ public class Customer extends People
                 if (getX() == Utils.cashier1X){
                     cash1IsFree = true;
                 } else {
+<<<<<<< HEAD
                     cash2IsFree = true;
+=======
+                    kitchenCounter1 = getWorld().getObjectsAt(Utils.kitchenCounterXRight, Utils.kitchenCounterY1, KitchenCounter.class).get(0);
+                    kitchenCounter2 = getWorld().getObjectsAt(Utils.kitchenCounterXRight, Utils.kitchenCounterY2, KitchenCounter.class).get(0);
+                    kitchenCounter3 = getWorld().getObjectsAt(Utils.kitchenCounterXRight, Utils.kitchenCounterY3, KitchenCounter.class).get(0);
+                    
+                    isChef1 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef1Y, Chef.class).isEmpty();
+                    isChef2 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef2Y, Chef.class).isEmpty();
+                    isChef3 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef3Y, Chef.class).isEmpty();
+                    
+                    if(!isChef1){
+                        chef1 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef1Y, Chef.class).get(0);
+                    }
+                    if(!isChef2){
+                        chef2 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef2Y, Chef.class).get(0);
+                    }
+                    if(!isChef3){
+                        chef3 = getWorld().getObjectsAt(Utils.chefXRight, Utils.chef3Y, Chef.class).get(0);
+                    }
+                }
+                
+                waiting = true;
+                
+                //starts a happiness meter
+                
+                if (!hasEmotionBar){
+                    waitTimer.mark();
+                    getWorld().addObject(new WaittingBar(this), getX(), getY() + 10);
+                    hasEmotionBar = true;
+                }
+                
+                //only orders if there is a cashier infront of them, a chef at the table, and the chef isn't making a pizza
+                if ((cashier != null && cashier.atStart())){
+                    if(!isChef1 && kitchenCounter1.checkCanMakePizza()){
+                        if(!chef1.getCurrentlyMoving()){
+                            order();
+                        }
+                    } else if (!isChef2 && kitchenCounter2.checkCanMakePizza()){
+                        if(!chef2.getCurrentlyMoving()){
+                            order();
+                        }
+                    } else if (!isChef3 && kitchenCounter3.checkCanMakePizza()){
+                        if(!chef3.getCurrentlyMoving()){
+                            order();
+                        }
+                    }
+>>>>>>> parent of e8578ac (final interaction animation)
                 }
             }
         }
@@ -239,6 +286,46 @@ public class Customer extends People
         }
     }
     
+<<<<<<< HEAD
+=======
+    public void pizzaPickup() {
+        //checks all 3 possible locations of pizza, based on current location
+        if (getX() == wait1.getX()){
+            pizza1 = (Pizza) getOneObjectAtOffset(0, Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza2 = (Pizza) getOneObjectAtOffset(wait2.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza3 = (Pizza) getOneObjectAtOffset(wait3.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+        } else if (getX() == wait2.getX()){
+            pizza1 = (Pizza) getOneObjectAtOffset(wait1.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza2 = (Pizza) getOneObjectAtOffset(0, Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza3 = (Pizza) getOneObjectAtOffset(wait3.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+        } else if (getX() == wait3.getX()){
+            pizza1 = (Pizza) getOneObjectAtOffset(wait1.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza2 = (Pizza) getOneObjectAtOffset(wait2.getX() - getX(), Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+            pizza3 = (Pizza) getOneObjectAtOffset(0, Utils.pizzaFinalY - Utils.counterY, Pizza.class);
+        }
+        
+        //only picks up the one that matches the order
+        if (pizza1 != null && pizza1.getY() == Utils.pizzaFinalY){
+            if (pizza1.getToppings() == toppings && pizza1.getSauce() == sauce){
+                pizza1.setCPU(this);
+                pickedUp = true;
+            }
+        }
+        if (pizza2 != null && pizza2.getY() == Utils.pizzaFinalY){
+            if (pizza2.getToppings() == toppings && pizza2.getSauce() == sauce){
+                pizza2.setCPU(this);
+                pickedUp = true;
+            }
+        }
+        if (pizza3 != null && pizza3.getY() == Utils.pizzaFinalY){
+            if (pizza3.getToppings() == toppings && pizza3.getSauce() == sauce){
+                pizza3.setCPU(this);
+                pickedUp = true;
+            }
+        }
+    }
+    
+>>>>>>> parent of e8578ac (final interaction animation)
     public void leave(){
         if (rotation == UP){
             rotation = DOWN;
