@@ -113,6 +113,7 @@ dependency42.from=Cashier
 dependency42.to=Utils
 dependency42.type=UsesDependency
 dependency43.from=Robber
+<<<<<<< HEAD
 dependency43.to=SimpleTimer
 dependency43.type=UsesDependency
 dependency44.from=Robber
@@ -127,6 +128,19 @@ dependency46.type=UsesDependency
 dependency47.from=WaittingBar
 dependency47.to=GifImage
 dependency47.type=UsesDependency
+=======
+dependency43.to=Utils
+dependency43.type=UsesDependency
+dependency44.from=Pizza
+dependency44.to=Cashier
+dependency44.type=UsesDependency
+dependency45.from=Pizza
+dependency45.to=SimpleTimer
+dependency45.type=UsesDependency
+dependency46.from=WaittingBar
+dependency46.to=GifImage
+dependency46.type=UsesDependency
+>>>>>>> parent of f933497 (1)
 dependency5.from=MyWorld
 dependency5.to=KitchenCounter
 dependency5.type=UsesDependency
@@ -145,10 +159,17 @@ dependency9.type=UsesDependency
 editor.fx.0.height=0
 editor.fx.0.width=0
 editor.fx.0.x=0
+<<<<<<< HEAD
 editor.fx.0.y=0
 height=699
 package.numDependencies=47
 package.numTargets=47
+=======
+editor.fx.0.y=23
+height=830
+package.numDependencies=46
+package.numTargets=32
+>>>>>>> parent of f933497 (1)
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
