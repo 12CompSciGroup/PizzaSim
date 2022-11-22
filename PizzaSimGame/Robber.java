@@ -16,6 +16,9 @@ public class Robber extends People
     private GreenfootImage robberb = new GreenfootImage("robberb.png");
     private GreenfootImage robberl = new GreenfootImage("robberl.png");
     private GreenfootImage robberr;
+    private GreenfootImage[] robberfw = new GreenfootImage[8];
+    private int imageIndex = 0;
+    private SimpleTimer timer = new SimpleTimer();
     
     /**
      * Act - do whatever the Robber wants to do. This method is called whenever
@@ -27,6 +30,10 @@ public class Robber extends People
         setImage(robberf);
         robberr = new GreenfootImage(robberl);
         robberr.mirrorHorizontally();
+        for(int i=0;i<robberfw.length;i++)
+        {
+            robberfw[i] = new GreenfootImage("images/tile00" + i + ".png");
+        }
     }
 
     public void act()
@@ -111,6 +118,7 @@ public class Robber extends People
         if(getY() != 710)
         {
             setLocation(getX(),getY()+1);
+            animatef();
         }
     }
 
@@ -199,6 +207,18 @@ public class Robber extends People
         {
             position = true;
         }
+        
+    }
+    public void animatef()
+    {
+        timer.mark();
+        if(timer.millisElapsed()<100)
+            {
+                return;
+            }
+        setImage(robberfw[imageIndex]);
+        imageIndex = (imageIndex+1) % robberfw.length;
+        
         
     }
 
