@@ -12,6 +12,12 @@ public class People extends Actor
     private double exactY;
     private double rotation;
     private boolean staticRotation = false;
+<<<<<<< HEAD
+=======
+    private int imageIndex = 0;
+    
+    private SimpleTimer animTimer = new SimpleTimer();
+>>>>>>> parent of 49bbf5a (interactAnim)
     /**
      * Act - do whatever the People wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -33,6 +39,85 @@ public class People extends Actor
         // Add your action code here.
     }
     
+<<<<<<< HEAD
+=======
+    public void animate(GreenfootImage[] up, GreenfootImage[] down, GreenfootImage[] left, GreenfootImage[] right, int rotation){
+        rotation = correctNegRotation(rotation);
+        
+        if(imageIndex == 9){
+            imageIndex = 0;
+        }
+        
+        if (animTimer.millisElapsed() > 80){
+            switch (rotation){
+                case UP:
+                    setImage(up[imageIndex]);
+                    break;
+                case DOWN:
+                    setImage(down[imageIndex]);
+                    break;
+                case LEFT:
+                    setImage(left[imageIndex]);
+                    break;
+                case RIGHT:
+                    setImage(right[imageIndex]);
+                    break;
+            }
+            imageIndex++;
+            animTimer.mark();
+        }
+    }
+    
+    public void standStill(GreenfootImage up, GreenfootImage down, GreenfootImage left, GreenfootImage right, int rotation){
+        rotation = correctNegRotation(rotation);
+        
+        switch (rotation){
+            case UP:
+                setImage(up);
+                break;
+            case DOWN:
+                setImage(down);
+                break;
+            case LEFT:
+                setImage(left);
+                break;
+            case RIGHT:
+                setImage(right);
+                break;
+        }
+        
+    }
+    
+    public int correctNegRotation(int rotation){
+        if (rotation < 0){
+            if (rotation == -270){
+                rotation = RIGHT;
+            } else if (rotation == -180){
+                rotation = DOWN;
+            } else if (rotation == -90){
+                rotation = LEFT;
+            }
+        }
+        return rotation;
+    }
+    
+    public void addCustomer1(){
+        numberOfCustomers1++;
+    }
+    
+    public void addCustomer2(){
+        numberOfCustomers2++;
+    }
+    
+    public void removeCustomer1(){
+        numberOfCustomers1--;
+    }
+    
+    public void removeCustomer2(){
+        numberOfCustomers2--;
+    }
+    
+>>>>>>> parent of 49bbf5a (interactAnim)
     /**
      * Set the location using exact coordinates.
      * 

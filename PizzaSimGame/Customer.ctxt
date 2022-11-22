@@ -17,7 +17,10 @@ comment13.params=
 comment13.target=int\ getStore()
 comment14.params=
 comment14.target=int\ getWaitTime()
+<<<<<<< HEAD
 >>>>>>> parent of e8578ac (final interaction animation)
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
@@ -39,4 +42,7 @@ numComments=10
 =======
 comment9.target=void\ leave()
 numComments=15
+<<<<<<< HEAD
 >>>>>>> parent of e8578ac (final interaction animation)
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)

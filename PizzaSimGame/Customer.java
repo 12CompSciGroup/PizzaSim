@@ -119,11 +119,14 @@ public class Customer extends People
     
     public void act (){
 <<<<<<< HEAD
+<<<<<<< HEAD
         setRotation();
         
         if (inStore == false) {
             if (numOfCustomers >= 5 || (ordered == true && pickedUp == true)){
 =======
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
         if(waiting){
             standStill(walkUp[0], walkDown[0], walkLeft[0], walkRight[0], rotation);
         } else {
@@ -155,7 +158,10 @@ public class Customer extends People
         //also ignores doors if there are more than 5 customers
         if (!inStore) {
             if ((numberOfCustomers1 >= 5 && store == Utils.MAMA) || (numberOfCustomers2 >= 5 && store == Utils.PAPA)){
+<<<<<<< HEAD
 >>>>>>> parent of 2353e15 (initial merge)
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
                 setLocation(getX(), getY() + (Utils.moveSpeed * dir));
                 
                 if (dir == 1){
@@ -163,7 +169,18 @@ public class Customer extends People
                 } else if (dir == -1){
                     rotation = UP;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+                }
+            } else if (!cash1.checkIfEmpty() && (isCash2Open && !cash2.checkIfEmpty())){
+                setLocation(getX(), getY() + (Utils.moveSpeed * dir));
+                
+                if (dir == 1){
+                    rotation = DOWN;
+                } else if (dir == -1){
+                    rotation = UP;
+>>>>>>> parent of 49bbf5a (interactAnim)
                 }
             } else if(ordered && pickedUp){
                 if (getX() == spawnX){
@@ -471,7 +488,10 @@ public class Customer extends People
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
     
     public boolean getPickedUp(){
         return pickedUp;

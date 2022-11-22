@@ -52,15 +52,47 @@ public class Chef extends People
             leftIdle[i] = new GreenfootImage("idle" + i + ".png");
             leftIdle[i].scale(x, y);
             leftIdle[i].mirrorHorizontally();
+<<<<<<< HEAD
+=======
+        }
+        */
+        if(pizzaria == -1)
+        {
+            setImage(walkLeft[0]);
+            rotationIndex = -90;
+            counterXCoord = Utils.chefXLeft;
+            startRotationIndex = -90;
+        }
+        if(pizzaria == 1)
+        {
+            setImage(walkRight[0]);
+            rotationIndex = 90;
+            counterXCoord = Utils.chefXRight;
+            startRotationIndex = 90;
+>>>>>>> parent of 49bbf5a (interactAnim)
         }
         */
         setImage(walkLeft[0]);
     }
     
     public void act()
+<<<<<<< HEAD
     {
         animate();
         if(!checkedOvenLocation)
+=======
+    {   
+        if(getX() != counterXCoord || getY() != counterYCoord)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+        
+        if(pizzaria == -1 && !checkedOvenLocation)
+>>>>>>> parent of 49bbf5a (interactAnim)
         {
             oven1 = (Oven)getWorld().getObjectsAt(Utils.oven1X, Utils.ovenY, Oven.class).get(0);
             oven2 = (Oven)getWorld().getObjectsAt(Utils.oven2X, Utils.ovenY, Oven.class).get(0);
@@ -85,6 +117,7 @@ public class Chef extends People
         {
             return;
         }
+<<<<<<< HEAD
         animationTimer.mark();
         //Changes actor's image depending on conditions to create animation
         if(rotationIndex == 0)
@@ -107,6 +140,8 @@ public class Chef extends People
             setImage(walkLeft[imageIndex]);
             imageIndex = (imageIndex + 1) % walkLeft.length;
         }
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
     }
 
     public void moveToOven()
@@ -119,7 +154,11 @@ public class Chef extends People
         //rotate chef and pizza
         if(openOven != 4)
         {
+<<<<<<< HEAD
             if(rotationIndex != 90 && timer.millisElapsed() > 200)
+=======
+            if(rotationIndex != startRotationIndex + (-180 * pizzaria) && timer.millisElapsed() > 200)
+>>>>>>> parent of 49bbf5a (interactAnim)
             {
                 timer.mark();
                 rotate(90);
@@ -288,6 +327,9 @@ public class Chef extends People
     
     public boolean getCurrentlyMoving(){
         return currentlyMovingPizza;
+<<<<<<< HEAD
 >>>>>>> parent of e8578ac (final interaction animation)
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
     }
 }

@@ -66,8 +66,18 @@ public class Cashier extends People
     
     public void act()
     {
+<<<<<<< HEAD
         animate();
         if(!checkedOvenLocation)
+=======
+        if (atCashier){
+            standStill(walkUp[0], walkDown[0], walkLeft[0], walkRight[0], rotationIndex);
+        } else {
+            animate(walkUp, walkDown, walkLeft, walkRight, rotationIndex);
+        }
+        
+        if(pizzaria == -1 && !checkedOvenLocation)
+>>>>>>> parent of 49bbf5a (interactAnim)
         {
             oven1 = (Oven)getWorld().getObjectsAt(Utils.oven1X, Utils.ovenY, Oven.class).get(0);
             oven2 = (Oven)getWorld().getObjectsAt(Utils.oven2X, Utils.ovenY, Oven.class).get(0);
@@ -92,6 +102,7 @@ public class Cashier extends People
         
         //moveToCounter(330, 460);
         //moveToCashierCounter(530, 460);
+<<<<<<< HEAD
     }
     
     public void animate()
@@ -122,6 +133,14 @@ public class Cashier extends People
             setImage(walkLeft[imageIndex]);
             imageIndex = (imageIndex + 1) % walkLeft.length;
         }
+=======
+        
+        if (getX() == counterXCoord && getY() == counterYCoord){
+            atCashier = true;
+        } else {
+            atCashier = false;
+        }
+>>>>>>> parent of 49bbf5a (interactAnim)
     }
 
     public void moveToOven()
@@ -208,7 +227,10 @@ public class Cashier extends People
         
         if(getPizza().getY() == Utils.pizzaFinalY)
         {
+<<<<<<< HEAD
 >>>>>>> parent of e8578ac (final interaction animation)
+=======
+>>>>>>> parent of 49bbf5a (interactAnim)
             currentlyMovingPizza = false;
             atCounter = true;
             pizzaXOffset = 0;
