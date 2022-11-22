@@ -9,8 +9,6 @@ import java.util.List;
  */
 public class CashierCounter extends Target
 {
-    private boolean isEmpty, isReserved = false;
-    
     /**
      * Act - do whatever the CashierCounter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -18,28 +16,5 @@ public class CashierCounter extends Target
 
     public void act()
     {
-    }
-    
-    //reservation system for cashiers, same code as waiting line and overlaps with anson's oven class, abstracting is v possible
-    public boolean checkIfEmpty()
-    {
-        if(getOneObjectAtOffset(0, 0, Customer.class) != null)
-        {
-            isEmpty = false;
-        } else
-        {
-            isEmpty = true;
-        }
-        return isEmpty;
-    }
-    
-    public void reserve(boolean reservation)
-    {
-        isReserved = reservation;
-    }
-    
-    public boolean isReserved()
-    {
-        return isReserved;
     }
 }
