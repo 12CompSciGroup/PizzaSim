@@ -2,7 +2,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class StartWorld here.
+ * <p></p>
+ * <p></p>
+ * 
  * 
  * @author Yixin Cai & Gloria Chan
  * @version (a version number or a date)

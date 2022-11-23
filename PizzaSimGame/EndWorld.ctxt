@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=EndWorld
-comment0.text=\r\n\ EndWorld\ is\ an\ class\ that\ show\ the\ final\ result\ fo\ the\ simulation\ and\ display\r\n\ confetti\ effect.\r\n\ \r\n\ @author\ Yixin\ Cai\ &\ Gloria\ Chan\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ EndWorld\ is\ an\ class\ that\ show\ the\ final\ result\ fo\ the\ simulation\ and\ display\n\ confetti\ effect.\n\ \n\ @author\ Yixin\ Cai\ &\ Gloria\ Chan\n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=result\ level\ money
 comment1.target=EndWorld(int,\ int,\ int)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ EndWorld.\r\n\ \r\n
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ EndWorld.\n\ \n
 comment2.params=
 comment2.target=void\ stopped()
 comment3.params=

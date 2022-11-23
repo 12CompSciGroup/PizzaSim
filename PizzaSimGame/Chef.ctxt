@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Chef
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Chef\ here.\r\n\ \r\n\ @author\ Anson\ Ho\ \r\n\ @version\ V.1\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Chef\ here.\n\ \n\ @author\ Anson\ Ho\ \n\ @version\ V.1\n
 comment1.params=counterYCoord\ scaleX\ scaleY\ pizzaria
 comment1.target=Chef(int,\ int,\ int,\ int)
 comment10.params=

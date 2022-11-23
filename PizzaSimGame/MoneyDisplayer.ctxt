@@ -1,19 +1,19 @@
 #BlueJ class context
 comment0.target=MoneyDisplayer
-comment0.text=\r\n\ Money\ displayer\ is\ a\ Greenfoot\ Actor\ used\ to\ display\ and\ update\ the\ current\ money\ of\ each\ kitchen\ \r\n\ \r\n\ @author\ Yuxin\ Li\r\n\ @version\ November\ 2022\r\n
+comment0.text=\n\ Money\ displayer\ is\ a\ Greenfoot\ Actor\ used\ to\ display\ and\ update\ the\ current\ money\ of\ each\ kitchen\ \n\ \n\ @author\ Yuxin\ Li\n\ @version\ November\ 2022\n
 comment1.params=value
 comment1.target=MoneyDisplayer(int)
-comment1.text=\r\n\ Store\ the\ initial\ money\ of\ the\ kitchen\ \r\n\ @param\ value\ Initial\ money\ of\ the\ kitchen\r\n
+comment1.text=\n\ Store\ the\ initial\ money\ of\ the\ kitchen\ \n\ @param\ value\ Initial\ money\ of\ the\ kitchen\n
 comment2.params=w
 comment2.target=void\ addedToWorld(greenfoot.World)
-comment2.text=\r\n\ when\ the\ money\ displayer\ is\ added\ to\ world,\ show\ the\ initail\ money\r\n
+comment2.text=\n\ when\ the\ money\ displayer\ is\ added\ to\ world,\ show\ the\ initail\ money\n
 comment3.params=newValue
 comment3.target=void\ setDisplayer(int)
-comment3.text=\r\n\ set\ the\ new\ value\ of\ displayer\ and\ update\ the\ displayer\r\n\ @param\ newValue\ new\ value\ of\ money\ \r\n
+comment3.text=\n\ set\ the\ new\ value\ of\ displayer\ and\ update\ the\ displayer\n\ @param\ newValue\ new\ value\ of\ money\ \n
 comment4.params=
 comment4.target=void\ updateImage()
-comment4.text=\r\n\ Change\ the\ money\ value\ and\ rewrite\ it\ on\ the\ screen\ \r\n
+comment4.text=\n\ Change\ the\ money\ value\ and\ rewrite\ it\ on\ the\ screen\ \n
 comment5.params=
 comment5.target=int\ getMoney()
-comment5.text=\r\n\ return\ the\ current\ money\ of\ restaurant\r\n
+comment5.text=\n\ return\ the\ current\ money\ of\ restaurant\n
 numComments=6

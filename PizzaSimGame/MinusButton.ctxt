@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=MinusButton
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MinusButton\ here.\r\n\ \r\n\ @author\ Yixin\ Cai\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ MinusButton\ here.\n\ \n\ @author\ Yixin\ Cai\n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=MinusButton()
 comment2.params=

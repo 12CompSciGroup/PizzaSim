@@ -2,16 +2,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class SettingWorld here.
+ * default
  * 
  * @author Yixin Cai
  * @version (a version number or a date)
  */
 public class SettingWorld extends World
 {
+    // Declare variables, objects
     private GreenfootImage imageMama;
     private GreenfootImage imagePapa;
     
+    // Declare buttons
     private PlusButton chefPlus;
     private MinusButton chefMinus;
     private PlusButton cashierPlus;
@@ -25,6 +27,7 @@ public class SettingWorld extends World
     private SwitchButton switchButton;
     private PlayButton playButton;
     
+    // Declare labels
     private Label chefNumLabel;
     private Label cashierNumLabel;
     private Label moneyNumLabel;
@@ -32,12 +35,14 @@ public class SettingWorld extends World
     private Label robberStealLabel;
     private Label volumeLabel;
     
+    // Declare final variables
     private final int DEFAULT_CHEF_NUM = 1;
     private final int DEFAULT_CASHIER_NUM = 1;
     private final int DEFAULT_MONEY_NUM = 0;
     private final int DEFAULT_OVEN_NUM = 1;
     private final int DEFAULT_ROBBER_STEAL = 15;
     
+    // Declare variables
     private int chefNumMama;
     private int cashierNumMama;
     private int moneyNumMama;
@@ -50,6 +55,7 @@ public class SettingWorld extends World
     private int ovenNumPapa;
     private int robberStealPapa;
     
+    // Declare boolean 
     private boolean isMama;
     
     /**
@@ -61,8 +67,11 @@ public class SettingWorld extends World
         // Create a new world with 1024x800 cells with a cell size of 1x1 pixels.
         super(1024, 800, 1);
         
+        // Initiate variables and objects for both pizzeria Mama and Papa
+        // True if it is in Papa's pizzeria, False if it is in Papa's pizzeria
         this.isMama = false;
         
+        // Set the default values for each variables.
         this.chefNumMama = DEFAULT_CHEF_NUM;
         this.cashierNumMama = DEFAULT_CASHIER_NUM;
         this.moneyNumMama = DEFAULT_MONEY_NUM;
@@ -78,7 +87,6 @@ public class SettingWorld extends World
         this.imageMama = new GreenfootImage("settingScreenMAMA.png");
         this.imagePapa = new GreenfootImage("settingScreenPAPA.png");
         
-        setBackground(imageMama);
         this.switchButton = new SwitchButton();
         this.playButton = new PlayButton();
         
@@ -103,41 +111,54 @@ public class SettingWorld extends World
         this.robberStealLabel = new Label("");
         
         volumeLabel = new Label(Utils.volume + "%");
+        
+        // Add objects into SettingWorld
         addObject(new VolumeButton(false), 850, 40);
         addObject(new VolumeButton(true), 970, 40);
         addObject(volumeLabel,910, 40);
         
-        addObject(this.chefPlus, 900, 310);
-        addObject(this.chefMinus, 800, 310);
-        addObject(this.chefNumLabel, 850, 310);
+        addObject(this.chefPlus, 900, 275);
+        addObject(this.chefMinus, 800, 275);
+        addObject(this.chefNumLabel, 850, 275);
         
-        addObject(this.cashierPlus, 900, 365);
-        addObject(this.cashierMinus, 800, 365);
-        addObject(this.cashierNumLabel, 850, 365);
+        addObject(this.cashierPlus, 900, 330);
+        addObject(this.cashierMinus, 800, 330);
+        addObject(this.cashierNumLabel, 850, 330);
         
-        addObject(this.moneyPlus, 900, 425);
-        addObject(this.moneyMinus, 800, 425);
-        addObject(this.moneyNumLabel, 850, 425);
+        addObject(this.moneyPlus, 900, 440);
+        addObject(this.moneyMinus, 800, 440);
+        addObject(this.moneyNumLabel, 850, 440);
         
-        addObject(this.ovenPlus, 900, 550);
-        addObject(this.ovenMinus, 800, 550);
-        addObject(this.ovenNumLabel, 850, 550);
+        addObject(this.ovenPlus, 900, 385);
+        addObject(this.ovenMinus, 800, 385);
+        addObject(this.ovenNumLabel, 850, 385);
         
-        addObject(this.robberStealPlus, 900, 495);
+        addObject(this.robberStealPlus, 900, 505);
         addObject(this.robberStealMinus, 800, 500);
-        addObject(this.robberStealLabel, 850, 495);
+        addObject(this.robberStealLabel, 850, 505);
         
         addObject(this.switchButton, 230, 710);
+        
+        // Set background image for SettingWorld
+        setBackground(imageMama);
         
         switchSettings();
     }
     
+    /**
+     * Act - do whatever the SettingWorld wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act() {
+        // Switch the setting image, variables, objects to another pizzeria 
+        // if mouse clicked switchButton.
         if (Greenfoot.mouseClicked(switchButton)) {
             switchSettings();
         }
 
+        // If is in Mama pizzeria, update and show the label of Mama
         if (isMama) {
+            // The maximum number of chef of Mama that player can set is 3, the minimum is 1
             if (Greenfoot.mouseClicked(chefPlus) && this.chefNumMama < 3) {
                 this.chefNumMama++;
                 this.chefNumLabel.updateLabel(this.chefNumMama);
@@ -146,6 +167,7 @@ public class SettingWorld extends World
                 this.chefNumMama--;
                 this.chefNumLabel.updateLabel(this.chefNumMama);
             }
+            // The maximum number of cashier of Mama that player can set is 2, the minimum is 1
             if (Greenfoot.mouseClicked(cashierPlus) && this.cashierNumMama < 2) {
                 this.cashierNumMama++;
                 this.cashierNumLabel.updateLabel(this.cashierNumMama);
@@ -154,6 +176,7 @@ public class SettingWorld extends World
                 this.cashierNumMama--;
                 this.cashierNumLabel.updateLabel(this.cashierNumMama);
             }
+            // The maximum number of money of Mama that player can set is 250, the minimum is 0
             if (Greenfoot.mouseClicked(moneyPlus) && moneyNumMama < 250) {
                 this.moneyNumMama += 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumMama);
@@ -162,6 +185,7 @@ public class SettingWorld extends World
                 this.moneyNumMama -= 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumMama);
             }
+            // The maximum number of oven of Mama that player can set is 3, the minimum is 1
             if (Greenfoot.mouseClicked(ovenPlus) && ovenNumMama < 3) {
                 this.ovenNumMama += 1;
                 this.ovenNumLabel.updateLabel(this.ovenNumMama);
@@ -170,6 +194,7 @@ public class SettingWorld extends World
                 this.ovenNumMama -= 1;
                 this.ovenNumLabel.updateLabel(this.ovenNumMama);
             }
+            // The maximum number of robber of Mama can steals is 25, the minimum is 10
             if (Greenfoot.mouseClicked(robberStealPlus) && this.robberStealMama < 25) {
                 this.robberStealMama += 5;
                 this.robberStealLabel.updateLabel(this.robberStealMama);
@@ -179,7 +204,9 @@ public class SettingWorld extends World
                 this.robberStealLabel.updateLabel(this.robberStealMama);
             }
         }
+        // If is in Papa pizzeria, update and show the label of Papa
         else {
+            // The maximum number of chef of Papa that player can set is 3, the minimum is 1
             if (Greenfoot.mouseClicked(chefPlus) && this.chefNumPapa < 3) {
                 this.chefNumPapa++;
                 this.chefNumLabel.updateLabel(this.chefNumPapa);
@@ -188,6 +215,7 @@ public class SettingWorld extends World
                 this.chefNumPapa--;
                 this.chefNumLabel.updateLabel(this.chefNumPapa);
             }
+            // The maximum number of cashier of Papa that player can set is 2, the minimum is 1
             if (Greenfoot.mouseClicked(cashierPlus) && this.cashierNumPapa < 2) {
                 this.cashierNumPapa++;
                 this.cashierNumLabel.updateLabel(this.cashierNumPapa);
@@ -196,6 +224,7 @@ public class SettingWorld extends World
                 this.cashierNumPapa--;
                 this.cashierNumLabel.updateLabel(this.cashierNumPapa);
             }
+            // The maximum number of money of Papa that player can set is 250, the minimum is 0
             if (Greenfoot.mouseClicked(moneyPlus) && this.moneyNumPapa < 250) {
                 this.moneyNumPapa += 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumPapa);
@@ -204,6 +233,7 @@ public class SettingWorld extends World
                 this.moneyNumPapa -= 10;
                 this.moneyNumLabel.updateLabel(this.moneyNumPapa);
             }
+            // The maximum number of oven of Papa that player can set is 3, the minimum is 1
             if (Greenfoot.mouseClicked(ovenPlus) && ovenNumPapa < 3) {
                 this.ovenNumPapa += 1;
                 this.ovenNumLabel.updateLabel(this.ovenNumPapa);
@@ -212,6 +242,7 @@ public class SettingWorld extends World
                 this.ovenNumPapa -= 1;
                 this.ovenNumLabel.updateLabel(this.ovenNumPapa);
             }
+            // The maximum number of robber of Papa can steals is 25, the minimum is 10
             if (Greenfoot.mouseClicked(robberStealPlus) && this.robberStealPapa < 25) {
                 this.robberStealPapa += 5;
                 this.robberStealLabel.updateLabel(this.robberStealPapa);
@@ -223,16 +254,31 @@ public class SettingWorld extends World
         }
     }
     
+    /**
+     * This method is called by the Greenfoot system when the execution has started.
+     * Play background sound in loop once the execution has started.
+     */
     public void started() {
         Utils.backgroundSound.playLoop();
     }
     
+    /**
+     * This method is called by the Greenfoot system when the execution has stopped.
+     * Pause background sound in loop once the execution has stopped so that when it
+     * started again, the sound will play coherently.
+     */ 
     public void stopped() {
         Utils.backgroundSound.pause();
     }
     
+    /**
+     * Switch the background images and the numbers of different pizzerias.
+     * Switch the locations of buttons and change the boolean isMama.
+     * Only add playButton in Papa pizzeria, remove it when it is in Mama's pizzeria.
+     */
     private void switchSettings() {
         if (this.isMama) {
+            // If is in Mama, switch variables into Papa's variables.
             setBackground(imagePapa);
             this.switchButton.switchImage(this.isMama);
             this.chefNumLabel.updateLabel(this.chefNumPapa);
@@ -243,6 +289,7 @@ public class SettingWorld extends World
             addObject(playButton, 780, 710);
         }
         else {
+            // If is in Papa, switch variables into Mama's variables
             setBackground(imageMama);
             this.switchButton.switchImage(this.isMama);
             this.chefNumLabel.updateLabel(this.chefNumMama);
@@ -252,17 +299,20 @@ public class SettingWorld extends World
             this.robberStealLabel.updateLabel(this.robberStealMama);
             removeObject(playButton);
         }
-        
+        // Switch the locations of buttons.
         switchLocation();
-        
+        // turn the boolean into oppsite.
         this.isMama = !this.isMama;
     }
     
+    /**
+     * Switch Buttons locations according to the boolean isMama. 
+     */
     private void switchLocation() {
         int labelX, plusX, minusX;
         if (isMama) {
             labelX = 445;
-            plusX = 495;
+            plusX = 505;
             minusX = 395;
         }
         else {
@@ -271,59 +321,102 @@ public class SettingWorld extends World
             minusX = 800;
         }
         
-        this.chefNumLabel.setLocation(labelX, 310);
-        this.cashierNumLabel.setLocation(labelX, 365);
-        this.moneyNumLabel.setLocation(labelX, 425);
-        this.ovenNumLabel.setLocation(labelX, 550);
-        this.robberStealLabel.setLocation(labelX, 495);
-        this.chefPlus.setLocation(plusX, 310);
-        this.chefMinus.setLocation(minusX, 310);
-        this.cashierPlus.setLocation(plusX, 365);
-        this.cashierMinus.setLocation(minusX, 365);
-        this.moneyPlus.setLocation(plusX, 425);
-        this.moneyMinus.setLocation(minusX, 425);
-        this.ovenPlus.setLocation(plusX, 550);
-        this.ovenMinus.setLocation(minusX, 550);
-        this.robberStealPlus.setLocation(plusX, 495);
-        this.robberStealMinus.setLocation(minusX, 495);
+        this.chefNumLabel.setLocation(labelX, 275);
+        this.cashierNumLabel.setLocation(labelX, 330);
+        this.moneyNumLabel.setLocation(labelX, 440);
+        this.ovenNumLabel.setLocation(labelX, 385);
+        this.robberStealLabel.setLocation(labelX, 505);
+        this.chefPlus.setLocation(plusX, 275);
+        this.chefMinus.setLocation(minusX, 275);
+        this.cashierPlus.setLocation(plusX, 330);
+        this.cashierMinus.setLocation(minusX, 330);
+        this.moneyPlus.setLocation(plusX, 440);
+        this.moneyMinus.setLocation(minusX, 440);
+        this.ovenPlus.setLocation(plusX, 385);
+        this.ovenMinus.setLocation(minusX, 385);
+        this.robberStealPlus.setLocation(plusX, 505);
+        this.robberStealMinus.setLocation(minusX, 505);
     }
     
+    /**
+     * Getter to give access of the chef's number of Mama pizzeria.
+     * @return int The chef's number of Mama pizzeria.
+     */
     public int getChefNumMama() {
         return this.chefNumMama;
     }
     
+    
+    /**
+     * Getter to give access of the cashier's number of Mama pizzeria.
+     * @return int The cashier's number of Mama pizzeria.
+     */
     public int getCashierNumMama() {
         return this.cashierNumMama;
     }
     
+    
+    /**
+     * Getter to give access of the money's number of Mama pizzeria.
+     * @return int The money's number of Mama pizzeria.
+     */
     public int getMoneyNumMama() {
         return this.moneyNumMama;
     }
     
+
+    /**
+     * Getter to give access of the oven's number of Mama pizzeria.
+     * @return int The oven's number of Mama pizzeria.
+     */
     public int getOvenNumMama() {
         return this.ovenNumMama;
     }
     
+    /**
+     * Getter to give access of the money that robber can steals of Mama pizzeria.
+     * @return int The the money that robber can steals of Mama pizzeria.
+     */
     public int getRobberStealMama() {
         return this.robberStealMama;
     }
     
+    /**
+     * Getter to give access of the chef's number of Papa pizzeria.
+     * @return int The chef's number of Papa pizzeria.
+     */
     public int getChefNumPapa() {
         return this.chefNumPapa;
     }
     
+    /**
+     * Getter to give access of the cashier's number of Papa pizzeria.
+     * @return int The cashier's number of Papa pizzeria.
+     */
     public int getCashierNumPapa() {
         return this.cashierNumPapa;
     }
     
+    /**
+     * Getter to give access of the money's number of Papa pizzeria.
+     * @return int The money's number of Papa pizzeria.
+     */
     public int getMoneyNumPapa() {
         return this.moneyNumPapa;
     }
     
+    /**
+     * Getter to give access of the oven's number of Papa pizzeria.
+     * @return int The oven's number of Papa pizzeria.
+     */
     public int getOvenNumPapa() {
         return this.ovenNumPapa;
     }
     
+    /**
+     * Getter to give access of the money that robber can steals of Mama pizzeria.
+     * @return int The the money that robber can steals of Mama pizzeria.
+     */
     public int getRobberStealPapa() {
         return this.robberStealPapa;
     }

@@ -2,7 +2,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class MyWorld here.
+ * <h1>The Pizza Simulation finished by Group 1.</h1>
+ * <p> Group member: Yixin Cai, Anson Ho, Yuxin Li, Gloria Chan, Andy Li, Eric Zheng</p>
+ * <h2>Credit:</h2>
+ * 
+ * <p>
+ * Background music:
+ * Run Amok by Kevin MacLeod | https://incompetech.com/
+ * Music promoted by https://www.chosic.com/free-music/all/
+ * Creative Commons CC BY 3.0
+ * https://creativecommons.org/licenses/by/3.0/
+ * </p>
+ * <p>
+ * Click music:
+ * Sound Effect by <a href="https://pixabay.com/users/sennafoxy-177
+ * 62344/?utm_source=link-attribution&amp;utm_medium=referral&amp;ut
+ * m_campaign=music&amp;utm_content=14388">SennaFoxy</a> from <a href
+ * ="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=
+ * referral&amp;utm_campaign=music&amp;utm_content=14388">Pixabay</a>
+ * </p>
+ * <p>Angry hmp sound clips: Sound Effect from <a href="https://pixabay.com/
+ * sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm
+ * _campaign=music&amp;utm_content=38556">Pixabay</a>
+ * </p>
+ * <p>Clock tik sound clip: Sound Effect from <a href="https://pixabay.com/sound
+ * -effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign
+ * =music&amp;utm_content=55420">Pixabay</a>
+ * </p>
+ * <p>Other Sound clips: https://pixabay.com/music/</p>
  * 
  * 
  * @author (your name) 
